@@ -14,7 +14,7 @@ export interface AuthApiType {
 
 export const authApi = {
   async login(body: AuthApiType['Login']['Body']) {
-    return await $fetch('/auth/login', {
+    return await $fetch<AuthApiType['Login']['Response']>('/auth/login', {
       method: 'POST',
       body
     })

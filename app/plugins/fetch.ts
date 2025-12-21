@@ -1,4 +1,3 @@
-// plugins/fetch.ts
 export default defineNuxtPlugin(() => {
   const config = useRuntimeConfig()
 
