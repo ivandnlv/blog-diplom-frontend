@@ -12,15 +12,17 @@
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.74",
-    "@iconify-json/mi": "^1.2.2",
     "@iconify-json/simple-icons": "^1.2.59",
     "@nuxt/ui": "^4.2.1",
     "@pinia/nuxt": "0.11.3",
+    "@vueuse/nuxt": "14.1.0",
     "nuxt": "^4.2.2",
     "pinia": "^3.0.4",
+    "vue": "^3.5.25",
     "yup": "^1.7.1"
   },
   "devDependencies": {
+    "@iconify-json/heroicons": "^1.2.3",
     "@nuxt/eslint": "^1.10.0",
     "eslint": "^9.39.1",
     "typescript": "^5.9.3",

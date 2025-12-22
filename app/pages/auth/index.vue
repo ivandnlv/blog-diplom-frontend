@@ -66,7 +66,7 @@ const { runWithLoading: login, isLoading: isLoggingIn } = useTryCatchWithLoading
         name="password"
         required
       >
-        <UInput
+        <UiInputPassword
           v-model="state.password"
           placeholder="Введите пароль"
         />
@@ -74,7 +74,7 @@ const { runWithLoading: login, isLoading: isLoggingIn } = useTryCatchWithLoading
 
       <span
         v-if="serverErrorMessage"
-        class="text-(--ui-error) self-center"
+        class="text-(--ui-error) text-sm self-center"
       >
         {{ serverErrorMessage }}
       </span>
