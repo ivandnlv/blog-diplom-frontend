@@ -20,6 +20,8 @@ export const useAuthStore = defineStore('store:auth', () => {
   })
 
   const { runWithLoading: fetchMe, isLoading: isMeLoading } = useTryCatchWithLoading(async () => {
+    if (!accessToken.value) return
+
     const { data } = await usersApi.me()
 
     user.value = data

@@ -1,6 +1,7 @@
 import type { AppRouteName } from '~/types/app/router'
 
-export const APP_ROUTES = {
+export const APP_ROUTES: Record<string, AppRouteName> = {
   index: 'index' as const,
-  auth: 'auth' as const
-} satisfies Record<string, AppRouteName>
+  auth: 'auth' as const,
+  authRegister: 'auth-register' as const
+}

@@ -15,7 +15,15 @@ const auth: SitemapRoute = {
   }
 }
 
+const authRegister: SitemapRoute = {
+  name: 'Регистрация',
+  route: {
+    name: APP_ROUTES.authRegister
+  }
+}
+
 export const SITEMAP = {
   index,
-  auth
+  auth,
+  authRegister
 }
