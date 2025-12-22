@@ -29,9 +29,18 @@ const authLogout: SitemapRoute = {
   }
 }
 
+const adminPosts: SitemapRoute = {
+  name: 'Публикации',
+  route: {
+    name: APP_ROUTES.adminPosts
+  }
+}
+
 export const SITEMAP = {
   index,
   auth,
   authRegister,
-  authLogout
+  authLogout,
+
+  adminPosts
 }

@@ -4,6 +4,7 @@ import { authApi, type AuthApiType } from '~/api/auth'
 import { object } from 'yup'
 import { appValidator } from '~/helpers/validation'
 import { useTryCatchWithLoading } from '~/composables/use-try-catch-with-loading'
+import { redirectAfterAuthByRole } from '~/helpers/auth/redirect-after-auth-by-role'
 
 definePageMeta({
   layout: false,
@@ -23,7 +24,7 @@ const schema = object({
 })
 
 const authStore = useAuthStore()
-const { accessToken } = storeToRefs(authStore)
+const { accessToken, user } = storeToRefs(authStore)
 
 const { runWithLoading: login, isLoading: isLoggingIn } = useTryCatchWithLoading(async () => {
   const { data } = await authApi.login(state)
@@ -31,7 +32,12 @@ const { runWithLoading: login, isLoading: isLoggingIn } = useTryCatchWithLoading
   accessToken.value = data.accessToken
 
   await authStore.fetchMe()
-  await navigateTo(SITEMAP.index.route)
+
+  nextTick(async () => {
+    if (!user.value) return
+
+    await redirectAfterAuthByRole(user.value.role)
+  })
 }, {
   catchCallback: message => serverErrorMessage.value = message
 })
