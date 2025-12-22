@@ -6,14 +6,15 @@ import { appValidator } from '~/helpers/validation'
 import { useTryCatchWithLoading } from '~/composables/use-try-catch-with-loading'
 
 definePageMeta({
-  layout: false
+  layout: false,
+  middleware: 'only-unauthorized'
 })
 
 const serverErrorMessage = ref('')
 
 const state = reactive<AuthApiType['Login']['Body']>({
-  email: 'sadasdd@mail.ru',
-  password: '123456'
+  email: '',
+  password: ''
 })
 
 const schema = object({
@@ -21,8 +22,16 @@ const schema = object({
   password: appValidator.requiredPassword()
 })
 
-const { runWithLoading: login, isLoading } = useTryCatchWithLoading(async () => {
-  await authApi.login(state)
+const authStore = useAuthStore()
+const { accessToken } = storeToRefs(authStore)
+
+const { runWithLoading: login, isLoading: isLoggingIn } = useTryCatchWithLoading(async () => {
+  const { data } = await authApi.login(state)
+
+  accessToken.value = data.accessToken
+
+  await authStore.fetchMe()
+  await navigateTo(SITEMAP.index.route)
 }, {
   catchCallback: message => serverErrorMessage.value = message
 })
@@ -73,7 +82,7 @@ const { runWithLoading: login, isLoading } = useTryCatchWithLoading(async () => 
       <UButton
         type="submit"
         block
-        :loading="isLoading"
+        :loading="isLoggingIn"
       >
         Войти
       </UButton>

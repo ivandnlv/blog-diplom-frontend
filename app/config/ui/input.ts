@@ -1,7 +1,6 @@
-import type { TVConfig } from '@nuxt/ui'
-import type * as ui from '#build/ui'
+import type { NuxtUiConfigType } from '~/types/utilities/nuxt-ui-config-type'
 
-export const input: TVConfig<typeof ui>['input'] = {
+export const input: NuxtUiConfigType['input'] = {
   slots: {
     root: 'w-full'
   }

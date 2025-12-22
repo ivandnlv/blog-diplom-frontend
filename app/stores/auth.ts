@@ -1,6 +1,5 @@
 import { AUTH_ACCESS_TOKEN_COOKIE_KEY } from '~/constants/auth'
 import type { UserEntity } from '~/types/user'
-import { authApi, type AuthApiType } from '~/api/auth'
 import { useTryCatchWithLoading } from '~/composables/use-try-catch-with-loading'
 import { usersApi } from '~/api/users'
 
@@ -13,12 +12,6 @@ export const useAuthStore = defineStore('store:auth', () => {
 
   const isLoggedIn = computed(() => !!(accessToken.value || user.value))
 
-  const { runWithLoading: login, isLoading: isLoggingIn } = useTryCatchWithLoading(async (body: AuthApiType['Login']['Body']) => {
-    const { data } = await authApi.login(body)
-
-    accessToken.value = data.accessToken
-  })
-
   const { runWithLoading: fetchMe, isLoading: isMeLoading } = useTryCatchWithLoading(async () => {
     if (!accessToken.value) return
 
@@ -27,12 +20,17 @@ export const useAuthStore = defineStore('store:auth', () => {
     user.value = data
   })
 
+  const logout = () => {
+    accessToken.value = null
+    user.value = null
+  }
+
   return {
     accessToken,
     isLoggedIn,
-    login,
-    isLoggingIn,
     fetchMe,
-    isMeLoading
+    isMeLoading,
+    user,
+    logout
   }
 })

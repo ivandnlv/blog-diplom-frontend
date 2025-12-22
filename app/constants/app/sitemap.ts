@@ -22,8 +22,16 @@ const authRegister: SitemapRoute = {
   }
 }
 
+const authLogout: SitemapRoute = {
+  name: 'Выйти',
+  route: {
+    name: APP_ROUTES.authLogout
+  }
+}
+
 export const SITEMAP = {
   index,
   auth,
-  authRegister
+  authRegister,
+  authLogout
 }
