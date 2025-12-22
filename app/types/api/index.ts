@@ -17,3 +17,8 @@ export interface BasePaginationResponse<T = unknown | null> extends BaseResponse
     totalPages: number
   }
 }
+
+export interface BasePaginationQuery {
+  page?: number
+  limit?: number
+}

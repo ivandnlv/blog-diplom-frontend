@@ -1,9 +1,38 @@
 <script setup lang="ts">
 import { SITEMAP } from '~/constants/app/sitemap'
+import { useAdminPostsStore } from '~/stores/admin/posts'
+import { POSTS_ADMIN_TABLE_COLUMNS } from '~/constants/posts/posts-admin-table-columns'
+import { formatISOtoDDMMYYYY } from '~/helpers/format/date'
+import { formatBoolean } from '~/helpers/format/boolean'
+
+const store = useAdminPostsStore()
+const { data, pending } = storeToRefs(store)
 </script>
 
 <template>
-  <h1 class="title-main">
-    {{ SITEMAP.adminPosts.name }}
-  </h1>
+  <div class="flex flex-col gap-8 h-full max-w-[1024px] pb-[120px] mx-auto w-full">
+    <h1 class="title-main">
+      {{ SITEMAP.adminPosts.name }}
+    </h1>
+
+    <UiSkeletonTable v-if="pending" />
+
+    <UTable
+      v-else-if="data?.length"
+      :data="data"
+      :columns="POSTS_ADMIN_TABLE_COLUMNS"
+    >
+      <template #published-cell="{ row }">
+        {{ formatBoolean(row.original.published) }}
+      </template>
+
+      <template #createdAt-cell="{ row }">
+        {{ row.original?.createdAt ? formatISOtoDDMMYYYY(row.original.createdAt) : '-' }}
+      </template>
+
+      <template #updatedAt-cell="{ row }">
+        {{ row.original?.updatedAt ? formatISOtoDDMMYYYY(row.original.updatedAt) : '-' }}
+      </template>
+    </UTable>
+  </div>
 </template>
