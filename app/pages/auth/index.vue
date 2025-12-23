@@ -54,7 +54,7 @@ const { runWithLoading: login, isLoading: isLoggingIn } = useTryCatchWithLoading
       :state="state"
       :schema="schema"
       @change="() => serverErrorMessage = ''"
-      @submit="login()"
+      @submit.prevent="login()"
     >
       <UFormField
         label="Email"
