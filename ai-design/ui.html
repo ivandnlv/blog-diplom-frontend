@@ -1,0 +1,353 @@
+
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevFlow UI Kit — Styleguide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0f0f10; color: #e5e7eb; scroll-behavior: smooth; }
+        .section-title { @apply text-2xl font-bold mb-6 pb-2 border-b border-zinc-800 flex items-center gap-2; }
+        .component-grid { @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12; }
+        .component-card { @apply p-6 bg-zinc-900/50 border border-zinc-800 rounded-2xl space-y-4; }
+        .label { @apply text-xs font-bold text-zinc-500 uppercase tracking-wider mb-2 block; }
+        
+        /* Table Custom Styles */
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+    </style>
+</head>
+<body class="antialiased pb-20">
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 border-b border-zinc-800 bg-[#0f0f10]/80 backdrop-blur-md">
+        <div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center font-bold">DF</div>
+                <h1 class="text-lg font-bold tracking-tight">DevFlow <span class="text-indigo-500 ml-1">UI Kit v1.3</span></h1>
+            </div>
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-zinc-400">
+                <a href="#buttons" class="hover:text-white transition-colors">Кнопки</a>
+                <a href="#forms" class="hover:text-white transition-colors">Формы</a>
+                <a href="#elements" class="hover:text-white transition-colors">Элементы</a>
+                <a href="#tables" class="hover:text-white transition-colors">Таблицы</a>
+                <a href="#cards" class="hover:text-white transition-colors">Карточки</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-[1000px] mx-auto px-6 pt-12">
+        
+        <!-- SECTION: BUTTONS -->
+        <section id="buttons" class="mb-16">
+            <h2 class="section-title"><i data-lucide="mouse-pointer-2" class="w-6 h-6"></i> Buttons / Кнопки</h2>
+            
+            <div class="component-grid">
+                <!-- Primary -->
+                <div class="component-card">
+                    <span class="label">Primary States</span>
+                    <div class="flex flex-wrap gap-3">
+                        <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl font-bold transition-all active:scale-95 shadow-lg shadow-indigo-600/20 text-sm">Default</button>
+                        <button class="bg-indigo-600/50 text-white/50 px-5 py-2.5 rounded-xl font-bold cursor-not-allowed text-sm">Disabled</button>
+                    </div>
+                </div>
+
+                <!-- Secondary / Outlined -->
+                <div class="component-card">
+                    <span class="label">Secondary & Ghost</span>
+                    <div class="flex flex-wrap gap-3">
+                        <button class="bg-zinc-800 hover:bg-zinc-700 text-white px-5 py-2.5 rounded-xl font-bold transition-all text-sm">Secondary</button>
+                        <button class="bg-transparent hover:bg-zinc-800 text-zinc-400 hover:text-white px-5 py-2.5 rounded-xl font-bold transition-all text-sm">Ghost Action</button>
+                    </div>
+                </div>
+
+                <!-- Danger / Success (Custom Palette) -->
+                <div class="component-card">
+                    <span class="label">Status Buttons</span>
+                    <div class="flex flex-wrap gap-3">
+                        <button class="bg-[#F472B6]/10 hover:bg-[#F472B6] text-[#F472B6] hover:text-white px-5 py-2.5 rounded-xl font-bold transition-all border border-[#F472B6]/20 text-sm">Danger</button>
+                        <button class="bg-[#A7F3D0]/10 hover:bg-[#A7F3D0] text-[#A7F3D0] hover:text-zinc-950 px-5 py-2.5 rounded-xl font-bold transition-all border border-[#A7F3D0]/20 text-sm">Success</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: FORMS -->
+        <section id="forms" class="mb-16">
+            <h2 class="section-title"><i data-lucide="form-input" class="w-6 h-6"></i> Forms / Формы</h2>
+            
+            <div class="component-grid">
+                <!-- Inputs -->
+                <div class="component-card col-span-1 md:col-span-2">
+                    <span class="label">Text Inputs</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="space-y-1.5">
+                            <label class="text-xs text-zinc-400 ml-1 font-medium">Стандартный инпут</label>
+                            <input type="text" placeholder="Введите текст..." class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-indigo-500 transition-all text-sm">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs text-zinc-400 ml-1 font-medium">Инпут с ошибкой (#F472B6)</label>
+                            <input type="text" value="Невалидный Email" class="w-full bg-zinc-950 border-[#F472B6]/50 rounded-xl px-4 py-2.5 outline-none focus:ring-2 focus:ring-[#F472B6] transition-all text-[#F472B6] text-sm">
+                            <p class="text-[10px] text-[#F472B6] ml-1 font-medium uppercase tracking-wider">Пожалуйста, проверьте формат почты</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Switches & Checks -->
+                <div class="component-card">
+                    <span class="label">Selection & Toggles</span>
+                    <div class="space-y-4">
+                        <label class="flex items-center gap-3 cursor-pointer group">
+                            <div class="w-10 h-5 bg-indigo-600 rounded-full relative transition-all">
+                                <div class="absolute right-1 top-1 w-3 h-3 bg-white rounded-full"></div>
+                            </div>
+                            <span class="text-sm font-medium">Активный переключатель</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <div class="w-5 h-5 bg-[#A7F3D0] rounded flex items-center justify-center text-zinc-950">
+                                <i data-lucide="check" class="w-3.5 h-3.5 stroke-[3]"></i>
+                            </div>
+                            <span class="text-sm font-medium">Выбрано (#A7F3D0)</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: TABLES -->
+        <section id="tables" class="mb-16">
+            <h2 class="section-title"><i data-lucide="table" class="w-6 h-6"></i> Tables / Таблицы</h2>
+            <div class="bg-zinc-900/50 border border-zinc-800 rounded-2xl overflow-hidden shadow-xl">
+                <div class="overflow-x-auto custom-scrollbar">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-zinc-900/80 border-b border-zinc-800">
+                                <th class="px-6 py-4 text-xs font-bold text-zinc-500 uppercase tracking-widest">Автор</th>
+                                <th class="px-6 py-4 text-xs font-bold text-zinc-500 uppercase tracking-widest">Статья / Коммент</th>
+                                <th class="px-6 py-4 text-xs font-bold text-zinc-500 uppercase tracking-widest">Статус</th>
+                                <th class="px-6 py-4 text-xs font-bold text-zinc-500 uppercase tracking-widest text-right">Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-zinc-800/50">
+                            <!-- Row 1 -->
+                            <tr class="hover:bg-zinc-800/30 transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" class="w-9 h-9 rounded-full bg-zinc-800 border border-zinc-700">
+                                        <div>
+                                            <div class="text-sm font-bold text-white leading-none">Александр М.</div>
+                                            <div class="text-[11px] text-zinc-500 mt-1">@alex_dev</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-zinc-300 max-w-[200px] truncate font-medium">Почему Nuxt UI v4 это круто...</div>
+                                    <div class="text-[10px] text-zinc-500 mt-0.5">14 Октября, 12:40</div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="px-2 py-0.5 bg-[#A7F3D0]/10 text-[#A7F3D0] text-[10px] font-bold rounded uppercase border border-[#A7F3D0]/20">Опубликован</span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <div class="flex items-center justify-end gap-2">
+                                        <button class="p-2 hover:bg-indigo-500/10 rounded-lg text-zinc-500 hover:text-indigo-400 transition-all">
+                                            <i data-lucide="edit-3" class="w-4 h-4"></i>
+                                        </button>
+                                        <button class="p-2 hover:bg-[#F472B6]/10 rounded-lg text-zinc-500 hover:text-[#F472B6] transition-all">
+                                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 2 -->
+                            <tr class="hover:bg-zinc-800/30 transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Hater" class="w-9 h-9 rounded-full bg-zinc-800 border border-zinc-700">
+                                        <div>
+                                            <div class="text-sm font-bold text-white leading-none">Иван Иванов</div>
+                                            <div class="text-[11px] text-zinc-500 mt-1">@hater_99</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-zinc-300 max-w-[200px] truncate font-medium italic">"Опять этот NestJS, ничего нового..."</div>
+                                    <div class="text-[10px] text-zinc-500 mt-0.5 font-medium text-[#F472B6]">Ждет модерации</div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="px-2 py-0.5 bg-[#F472B6]/10 text-[#F472B6] text-[10px] font-bold rounded uppercase border border-[#F472B6]/20">Подозрительно</span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <div class="flex items-center justify-end gap-2">
+                                        <button class="p-2 hover:bg-[#A7F3D0]/10 rounded-lg text-zinc-500 hover:text-[#A7F3D0] transition-all">
+                                            <i data-lucide="check" class="w-4 h-4"></i>
+                                        </button>
+                                        <button class="p-2 hover:bg-[#F472B6]/10 rounded-lg text-zinc-500 hover:text-[#F472B6] transition-all">
+                                            <i data-lucide="x" class="w-4 h-4"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 3 -->
+                            <tr class="hover:bg-zinc-800/30 transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Elena" class="w-9 h-9 rounded-full bg-zinc-800 border border-zinc-700">
+                                        <div>
+                                            <div class="text-sm font-bold text-white leading-none">Елена Короткая</div>
+                                            <div class="text-[11px] text-zinc-500 mt-1">@elena_k</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-zinc-300 max-w-[200px] truncate font-medium">Топ-10 библиотек для Nuxt...</div>
+                                    <div class="text-[10px] text-zinc-500 mt-0.5 font-medium text-indigo-400">В черновиках</div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="px-2 py-0.5 bg-zinc-800 text-zinc-400 text-[10px] font-bold rounded uppercase border border-zinc-700">Черновик</span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <div class="flex items-center justify-end gap-2">
+                                        <button class="p-2 hover:bg-indigo-500/10 rounded-lg text-zinc-500 hover:text-indigo-400 transition-all">
+                                            <i data-lucide="eye" class="w-4 h-4"></i>
+                                        </button>
+                                        <button class="p-2 hover:bg-zinc-800 rounded-lg text-zinc-500 hover:text-white transition-all">
+                                            <i data-lucide="more-horizontal" class="w-4 h-4"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="bg-zinc-900/80 px-6 py-3 border-t border-zinc-800 flex items-center justify-between">
+                    <span class="text-xs text-zinc-500">Показано 3 из 48 записей</span>
+                    <div class="flex gap-2">
+                        <button class="p-1.5 bg-zinc-800 hover:bg-zinc-700 rounded-md transition-colors">
+                            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                        </button>
+                        <button class="p-1.5 bg-zinc-800 hover:bg-zinc-700 rounded-md transition-colors">
+                            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: DATA DISPLAY -->
+        <section id="elements" class="mb-16">
+            <h2 class="section-title"><i data-lucide="component" class="w-6 h-6"></i> UI Elements / Элементы</h2>
+            
+            <div class="component-grid">
+                <!-- Badges -->
+                <div class="component-card">
+                    <span class="label">Status Badges</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2.5 py-0.5 bg-indigo-500/10 text-indigo-400 text-[10px] font-bold rounded uppercase border border-indigo-500/20">Новое</span>
+                        <span class="px-2.5 py-0.5 bg-[#A7F3D0]/10 text-[#A7F3D0] text-[10px] font-bold rounded uppercase border border-[#A7F3D0]/20">Опубликовано</span>
+                        <span class="px-2.5 py-0.5 bg-[#F472B6]/10 text-[#F472B6] text-[10px] font-bold rounded uppercase border border-[#F472B6]/20">Токсично</span>
+                        <span class="px-2.5 py-0.5 bg-zinc-800 text-zinc-400 text-[10px] font-bold rounded uppercase border border-zinc-700">Черновик</span>
+                    </div>
+                </div>
+
+                <!-- Avatars -->
+                <div class="component-card">
+                    <span class="label">Avatars & Status</span>
+                    <div class="flex items-end gap-4">
+                        <div class="relative">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Admin" class="w-14 h-14 rounded-full bg-zinc-800 border-2 border-indigo-600 p-0.5">
+                            <div class="absolute bottom-0 right-0 w-4 h-4 bg-[#A7F3D0] border-2 border-[#0f0f10] rounded-full shadow-[0_0_10px_rgba(167,243,208,0.3)]"></div>
+                        </div>
+                        <div class="relative">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=User" class="w-10 h-10 rounded-full bg-zinc-800 border border-zinc-700">
+                            <div class="absolute bottom-0 right-0 w-3 h-3 bg-[#F472B6] border-2 border-[#0f0f10] rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="component-card">
+                    <span class="label">Tabs Navigation</span>
+                    <div class="flex p-1 bg-zinc-950 rounded-xl border border-zinc-800">
+                        <button class="flex-1 py-1.5 text-xs font-bold rounded-lg bg-indigo-600 text-white shadow-sm transition-all">Все</button>
+                        <button class="flex-1 py-1.5 text-xs font-bold rounded-lg text-zinc-500 hover:text-zinc-300 transition-all">Популярное</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: CARDS & LAYOUTS -->
+        <section id="cards" class="mb-16">
+            <h2 class="section-title"><i data-lucide="layout" class="w-6 h-6"></i> Card Variants / Карточки</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Widget Card -->
+                <div class="space-y-4">
+                    <span class="label">Primary Statistics</span>
+                    <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 group">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-bold">Активность темы</h3>
+                            <i data-lucide="trending-up" class="w-4 h-4 text-[#A7F3D0]"></i>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="h-2 w-full bg-zinc-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-[#A7F3D0] w-[70%]"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-zinc-500 font-medium">
+                                <span>#разработка</span>
+                                <span class="text-[#A7F3D0]">+24% за неделю</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Task Card -->
+                <div class="space-y-4">
+                    <span class="label">Admin Task / Moderation</span>
+                    <div class="bg-zinc-900 border-l-4 border-l-[#F472B6] border-y border-r border-zinc-800 rounded-r-2xl p-4 flex gap-4">
+                        <div class="w-10 h-10 rounded-full bg-[#F472B6]/10 flex items-center justify-center text-[#F472B6]">
+                            <i data-lucide="shield-alert" class="w-5 h-5"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="text-xs font-bold text-[#F472B6] mb-1 uppercase tracking-tight">Подозрительный контент</div>
+                            <p class="text-sm text-zinc-300 line-clamp-2 italic mb-3 leading-snug font-medium">"Ваш код — полная ерунда, идите учить основы!"</p>
+                            <div class="flex gap-2">
+                                <button class="text-[10px] font-bold bg-zinc-800 px-3 py-1.5 rounded-lg hover:bg-zinc-700 transition-colors">Оставить</button>
+                                <button class="text-[10px] font-bold bg-[#F472B6] text-white px-3 py-1.5 rounded-lg hover:brightness-110 transition-all shadow-lg shadow-[#F472B6]/20">Удалить</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: ALERTS / TOASTS -->
+        <section id="alerts" class="mb-16">
+            <h2 class="section-title"><i data-lucide="bell" class="w-6 h-6"></i> Alerts / Уведомления</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-[#A7F3D0]/5 border border-[#A7F3D0]/20 p-4 rounded-xl flex items-center gap-3">
+                    <i data-lucide="check-circle" class="w-5 h-5 text-[#A7F3D0]"></i>
+                    <span class="text-sm font-medium text-[#A7F3D0]">Статья успешно опубликована!</span>
+                </div>
+                <div class="bg-[#F472B6]/5 border border-[#F472B6]/20 p-4 rounded-xl flex items-center gap-3">
+                    <i data-lucide="x-circle" class="w-5 h-5 text-[#F472B6]"></i>
+                    <span class="text-sm font-medium text-[#F472B6]">Ошибка при сохранении черновика.</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="max-w-[1200px] mx-auto px-6 py-12 border-t border-zinc-800 text-center">
+        <p class="text-zinc-600 text-sm italic">DevFlow UI Kit Concept v1.3. Спроектировано для NestJS + Nuxt UI v4.</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

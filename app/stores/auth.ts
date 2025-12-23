@@ -12,18 +12,20 @@ export const useAuthStore = defineStore('store:auth', () => {
 
   const isLoggedIn = computed(() => !!(accessToken.value || user.value))
 
+  const logout = () => {
+    accessToken.value = null
+    user.value = null
+  }
+
   const { runWithLoading: fetchMe, isLoading: isMeLoading } = useTryCatchWithLoading(async () => {
     if (!accessToken.value) return
 
     const { data } = await usersApi.me()
 
     user.value = data
+  }, {
+    catchCallback: logout
   })
-
-  const logout = () => {
-    accessToken.value = null
-    user.value = null
-  }
 
   return {
     accessToken,

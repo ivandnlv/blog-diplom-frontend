@@ -7,8 +7,7 @@ export default defineNuxtRouteMiddleware((to) => {
   const { isAdmin } = storeToRefs(useSessionStore())
 
   if (!isLoggedIn.value || !isAdmin.value) {
-    return abortNavigation({
-      error: true,
+    throw createError({
       statusCode: 404
     })
   }

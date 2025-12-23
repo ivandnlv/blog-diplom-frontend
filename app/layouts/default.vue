@@ -6,14 +6,13 @@ const { isLoggedIn, user } = storeToRefs(useAuthStore())
 
 <template>
   <div>
-    <main class="min-h-[calc(100svh_-_var(--default-footer-height))]">
-      <UContainer class="w-full h-full">
-        <slot />
-      </UContainer>
-    </main>
+    <header class="h-(--default-header-height) flex items-center border-b border-default py-6">
+      <UContainer class="flex w-full justify-between gap-4">
+        <ULink
+          :to="SITEMAP.index.route"
+          class="title-secondary no-underline"
+        >Blog-diplom</ULink>
 
-    <footer class="flex flex-col justify-center h-(--default-footer-height)">
-      <UContainer class="flex w-full justify-end gap-4">
         <span
           v-if="isLoggedIn && user"
           class="flex gap-4"
@@ -27,6 +26,18 @@ const { isLoggedIn, user } = storeToRefs(useAuthStore())
           <ULink :to="SITEMAP.auth.route">Войдите</ULink>
           в аккаунт, чтобы начать создавать статьи
         </span>
+      </UContainer>
+    </header>
+
+    <main class="min-h-[calc(100svh_-_var(--default-footer-height))]">
+      <UContainer class="w-full py-12 h-full">
+        <slot />
+      </UContainer>
+    </main>
+
+    <footer class="flex flex-col justify-center h-(--default-footer-height)">
+      <UContainer class="flex w-full justify-end">
+        <span>Blog-diplom</span>
       </UContainer>
     </footer>
   </div>
