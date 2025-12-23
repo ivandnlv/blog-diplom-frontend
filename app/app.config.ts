@@ -3,7 +3,8 @@ import * as uiConfigs from '~/config/ui'
 export default defineAppConfig({
   ui: {
     colors: {
-      primary: 'green',
+      primary: 'indigo',
+      secondary: 'zinc',
       neutral: 'slate'
     },
     ...uiConfigs

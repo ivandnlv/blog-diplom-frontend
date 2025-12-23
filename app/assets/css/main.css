@@ -2,22 +2,22 @@
 @import "@nuxt/ui";
 @import './tailwind/index.css';
 
+:root {
+  --color-indigo-400: #4f46e5;
+}
+
 @theme static {
   --font-sans: 'Geist', sans-serif;
 
   --default-header-height: 56px;
   --default-footer-height: 56px;
 
-  --ui-primary: #6366f1;
-  --ui-primary-hover: #4f46e5;
-  --ui-primary-muted: rgba(99, 102, 241, 0.1);
-
   --ui-success: #a7f3d0;
-  --ui-success-muted: rgba(167, 243, 208, 0.1);
+  --ui-success-muted: #1e2623;
   --ui-success-foreground: #064e3b;
 
-  --ui-error: #f472b6;
-  --ui-error-muted: rgba(244, 114, 182, 0.1);
+  --ui-error: #f46ba3;
+  --ui-error-muted: #261921;
   --ui-error-foreground: #ffffff;
 
   --ui-bg: #0f0f10;
@@ -34,4 +34,6 @@
 .dark {
   --ui-bg: #0f0f10;
   --ui-text: #f4f4f5;
+
+  --ui-text-inverted: #fff;
 }
