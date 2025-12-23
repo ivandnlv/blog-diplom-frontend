@@ -1,0 +1,85 @@
+@layer base {
+  :root {
+    /* Основные цвета (Primary - Indigo) */
+    --ui-primary: #6366f1;
+    --ui-primary-hover: #4f46e5;
+    --ui-primary-muted: rgba(99, 102, 241, 0.1);
+
+    /* Успех (Success - #A7F3D0) */
+    --ui-success: #a7f3d0;
+    --ui-success-muted: rgba(167, 243, 208, 0.1);
+    --ui-success-foreground: #064e3b;
+
+    /* Ошибка / Опасность (Error - #F472B6) */
+    --ui-error: #f472b6;
+    --ui-error-muted: rgba(244, 114, 182, 0.1);
+    --ui-error-foreground: #ffffff;
+
+    /* Нейтральные цвета и Фон */
+    --ui-bg: #0f0f10;
+    --ui-bg-elevated: #18181b;
+    --ui-text: #e5e7eb;
+    --ui-text-muted: #71717a;
+    --ui-border: #27272a;
+    --ui-border-muted: rgba(39, 39, 42, 0.5);
+
+    /* Геометрия */
+    --ui-radius: 1rem; /* 16px (rounded-2xl) */
+    --ui-container-max-width: 1200px;
+  }
+
+  .dark {
+    --ui-bg: #0f0f10;
+    --ui-text: #f4f4f5;
+  }
+}
+
+@layer components {
+  /* Базовые стили для элементов, чтобы они соответствовали Nuxt UI */
+  body {
+    background-color: var(--ui-bg);
+    color: var(--ui-text);
+    font-feature-settings: "cv02", "cv03", "cv04", "ss01";
+  }
+
+  .btn-primary {
+    background-color: var(--ui-primary);
+    border-radius: var(--ui-radius);
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--ui-primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
+  }
+
+  .input-base {
+    background-color: #09090b;
+    border: 1px solid var(--ui-border);
+    border-radius: 0.75rem;
+    padding: 0.625rem 1rem;
+    outline: none;
+    transition: border-color 0.2s, ring 0.2s;
+  }
+
+  .input-base:focus {
+    border-color: var(--ui-primary);
+    box-shadow: 0 0 0 2px var(--ui-primary-muted);
+  }
+
+  /* Стилизация скроллбара под наш темный интерфейс */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--ui-border);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3f3f46;
+  }
+}

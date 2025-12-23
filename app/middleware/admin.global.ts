@@ -1,4 +1,6 @@
 export default defineNuxtRouteMiddleware((to) => {
+  if (typeof to?.name !== 'string') return
+
   if (!to.name.startsWith('admin')) return
 
   const authStore = useAuthStore()
