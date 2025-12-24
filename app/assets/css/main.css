@@ -20,7 +20,6 @@
   --ui-error-muted: #261921;
   --ui-error-foreground: #ffffff;
 
-  --ui-bg: #0f0f10;
   --ui-bg-elevated: #18181b;
   --ui-text: #e5e7eb;
   --ui-text-muted: #71717a;
@@ -32,8 +31,11 @@
 }
 
 .dark {
-  --ui-bg: #0f0f10;
+  --ui-bg: #09090b;
+
+  --ui-border-accented: #1b1b1d;
   --ui-text: #f4f4f5;
 
   --ui-text-inverted: #fff;
+  --ui-text-dimmed: #9398a0;
 }

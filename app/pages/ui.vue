@@ -30,6 +30,8 @@ const buttonsArr: {
       Ui-kit
     </h1>
 
+    <span class="title-secondary">Buttons</span>
+
     <div
       v-for="(button, i) in buttonsArr"
       :key="`button-${i}`"
@@ -45,6 +47,30 @@ const buttonsArr: {
       >
         {{ button.name }} (disabled)
       </UButton>
+    </div>
+
+    <span class="title-secondary">Inputs</span>
+
+    <div class="flex gap-4 items-start">
+      <UFormField label="Label">
+        <UInput placeholder="Placeholder..." />
+      </UFormField>
+
+      <UFormField
+        label="Label"
+        error="Error"
+      >
+        <UInput placeholder="Placeholder..." />
+      </UFormField>
+
+      <UFormField
+        label="Label (disabled)"
+      >
+        <UInput
+          disabled
+          placeholder="Placeholder..."
+        />
+      </UFormField>
     </div>
   </div>
 </template>
