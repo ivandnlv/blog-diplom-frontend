@@ -72,5 +72,13 @@ const buttonsArr: {
         />
       </UFormField>
     </div>
+
+    <span class="title-secondary">Switch & Checkbox</span>
+
+    <div class="flex flex-col gap-4">
+      <USwitch label="Label" />
+
+      <UCheckbox label="Label" />
+    </div>
   </div>
 </template>

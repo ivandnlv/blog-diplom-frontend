@@ -7,6 +7,7 @@ export default defineAppConfig({
       secondary: 'zinc',
       neutral: 'slate'
     },
-    ...uiConfigs
+    ...uiConfigs,
+    switch: uiConfigs.uiSwitch
   }
 })
