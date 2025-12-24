@@ -30,7 +30,10 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/': { prerender: true }
+    '/': { prerender: true },
+    '/ui': {
+      ssr: false
+    }
   },
 
   experimental: {

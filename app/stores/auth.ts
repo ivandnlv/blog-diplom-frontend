@@ -10,7 +10,7 @@ export const useAuthStore = defineStore('store:auth', () => {
 
   const user = ref<UserEntity | null>(null)
 
-  const isLoggedIn = computed(() => !!(accessToken.value || user.value))
+  const isLoggedIn = computed(() => !!accessToken.value)
 
   const logout = () => {
     accessToken.value = null

@@ -140,11 +140,19 @@ const fakeTableColumns: TableColumn<typeof fakeTableData[0]>[] = [
       <UCheckbox label="Label" />
     </div>
 
-    <span class="title-secondary">Table</span>
+    <span class="title-secondary">Table & Card</span>
 
     <UTable
       :data="fakeTableData"
       :columns="fakeTableColumns"
     />
+
+    <UCard class="max-w-[300px]">
+      <span>Card</span>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, quasi!
+      </p>
+    </UCard>
   </div>
 </template>
