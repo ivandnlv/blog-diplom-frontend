@@ -6,7 +6,7 @@ export const link: NuxtUiConfigType['link'] = {
       active: false,
       disabled: false,
       class: [
-        'text-primary underline',
+        'text-primary underline underline-offset-2',
         'hover:text-default',
         'transition-colors'
       ]

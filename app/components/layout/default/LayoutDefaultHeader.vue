@@ -10,19 +10,26 @@ const { isLoggedIn, user } = storeToRefs(useAuthStore())
       <UiLogo />
 
       <div class="flex">
-        <span
+        <div
           v-if="isLoggedIn && user"
-          class="flex gap-4"
+          class="flex gap-4 items-center"
         >
-          Вы вошли как: <b>{{ user.email }}</b>
-          <ULink :to="SITEMAP.authLogout.route">Выйти</ULink>
-        </span>
+          <span class="max-sm:hidden">Вы вошли как: <b>{{ user.email }}</b></span>
 
-        <span v-else>
-          Вы администратор?
-          <ULink :to="SITEMAP.auth.route">Войдите</ULink>
-          в аккаунт, чтобы начать создавать статьи
-        </span>
+          <UButton
+            :to="SITEMAP.authLogout.route"
+            color="secondary"
+          >
+            Выйти
+          </UButton>
+        </div>
+
+        <UButton
+          v-else
+          :to="SITEMAP.auth.route"
+        >
+          Войти
+        </UButton>
       </div>
     </UContainer>
   </header>
