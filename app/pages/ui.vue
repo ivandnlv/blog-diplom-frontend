@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ButtonProps } from '#ui/components/Button.vue'
+import type { TableColumn } from '#ui/components/Table.vue'
 
 const buttonsArr: {
   name: string
@@ -20,6 +21,64 @@ const buttonsArr: {
   {
     name: 'Error',
     color: 'error'
+  }
+]
+
+const fakeTableData = [
+  {
+    id: Math.ceil(Math.random() * 100),
+    name: 'Name 1',
+    content: 'Text Text Text',
+    status: 'SUCCESS'
+  },
+  {
+    id: Math.ceil(Math.random() * 100),
+    name: 'Name 2',
+    content: 'Text Text Text',
+    status: 'SUCCESS'
+  },
+  {
+    id: Math.ceil(Math.random() * 100),
+    name: 'Name 3',
+    content: 'Text Text Text',
+    status: 'SUCCESS'
+  },
+  {
+    id: Math.ceil(Math.random() * 100),
+    name: 'Name 4',
+    content: 'Text Text Text',
+    status: 'SUCCESS'
+  },
+  {
+    id: Math.ceil(Math.random() * 100),
+    name: 'Name 5',
+    content: 'Text Text Text',
+    status: 'SUCCESS'
+  },
+  {
+    id: Math.ceil(Math.random() * 100),
+    name: 'Name 6',
+    content: 'Text Text Text',
+    status: 'SUCCESS'
+  }
+]
+
+const fakeTableColumns: TableColumn<typeof fakeTableData[0]>[] = [
+  {
+    accessorKey: 'id',
+    header: 'Id'
+  },
+  {
+    accessorKey: 'name',
+    header: 'Name'
+  },
+  {
+    accessorKey: 'content',
+    header: 'Content'
+  },
+  {
+    accessorKey: 'status',
+    header: 'Status'
   }
 ]
 </script>
@@ -80,5 +139,12 @@ const buttonsArr: {
 
       <UCheckbox label="Label" />
     </div>
+
+    <span class="title-secondary">Table</span>
+
+    <UTable
+      :data="fakeTableData"
+      :columns="fakeTableColumns"
+    />
   </div>
 </template>
