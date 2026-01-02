@@ -25,6 +25,8 @@
   --ui-bg-muted: #17171a;
   --ui-bg-inverted: var(--color-zinc-900);
 
+  --ui-white: #fff;
+
   --ui-border-accented: #1b1b1d;
 
   --ui-text-inverted: #fff;

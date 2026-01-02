@@ -5,6 +5,10 @@ import { POSTS_ADMIN_TABLE_COLUMNS } from '~/constants/posts/posts-admin-table-c
 import { formatISOtoDDMMYYYY } from '~/helpers/format/date'
 import { formatBoolean } from '~/helpers/format/boolean'
 
+definePageMeta({
+  layout: 'admin'
+})
+
 const store = useAdminPostsStore()
 const { data, pending } = storeToRefs(store)
 </script>
