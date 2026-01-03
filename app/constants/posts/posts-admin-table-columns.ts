@@ -21,5 +21,9 @@ export const POSTS_ADMIN_TABLE_COLUMNS: TableColumn<PostEntity>[] = [
   {
     header: 'Дата последнего изменения',
     accessorKey: 'updatedAt'
+  },
+  {
+    header: '',
+    accessorKey: 'actions'
   }
 ]

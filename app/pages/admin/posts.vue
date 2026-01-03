@@ -4,13 +4,14 @@ import { useAdminPostsStore } from '~/stores/admin/posts'
 import { POSTS_ADMIN_TABLE_COLUMNS } from '~/constants/posts/posts-admin-table-columns'
 import { formatISOtoDDMMYYYY } from '~/helpers/format/date'
 import { formatBoolean } from '~/helpers/format/boolean'
+import { ICONS_HERO } from '~/constants/icons/hero'
 
 definePageMeta({
   layout: 'admin'
 })
 
 const store = useAdminPostsStore()
-const { data, pending } = storeToRefs(store)
+const { data, pending, pagesCount, currentPage, total } = storeToRefs(store)
 </script>
 
 <template>
@@ -37,6 +38,23 @@ const { data, pending } = storeToRefs(store)
       <template #updatedAt-cell="{ row }">
         {{ row.original?.updatedAt ? formatISOtoDDMMYYYY(row.original.updatedAt) : '-' }}
       </template>
+
+      <template #actions-cell>
+        <div class="flex gap-4 items-center">
+          <UButton :icon="ICONS_HERO.PENCIL_SQUARE_16_SOLID" />
+
+          <UButton
+            color="error"
+            :icon="ICONS_HERO.TRASH_16_SOLID"
+          />
+        </div>
+      </template>
     </UTable>
+
+    <UPagination
+      v-if="pagesCount > 1"
+      v-model:page="currentPage"
+      :total="total"
+    />
   </div>
 </template>
