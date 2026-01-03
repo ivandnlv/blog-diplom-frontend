@@ -5,6 +5,7 @@ import { POSTS_ADMIN_TABLE_COLUMNS } from '~/constants/posts/posts-admin-table-c
 import { formatISOtoDDMMYYYY } from '~/helpers/format/date'
 import { formatBoolean } from '~/helpers/format/boolean'
 import { ICONS_HERO } from '~/constants/icons/hero'
+import { LazyUiModalConfirm } from '#components'
 
 definePageMeta({
   layout: 'admin'
@@ -12,10 +13,17 @@ definePageMeta({
 
 const store = useAdminPostsStore()
 const { data, pending, pagesCount, currentPage, total } = storeToRefs(store)
+
+const overlay = useOverlay()
+const modal = overlay.create(LazyUiModalConfirm, {
+  props: {
+    description: 'Вы действительно хотите удалить публикацию?'
+  }
+})
 </script>
 
 <template>
-  <div class="flex flex-col gap-8 h-full max-w-[1024px] pb-[120px] mx-auto w-full">
+  <div class="flex flex-col gap-8 h-full max-w-[1200px] pb-[120px] mx-auto w-full">
     <h1 class="title-main">
       {{ SITEMAP.adminPosts.name }}
     </h1>
@@ -46,6 +54,7 @@ const { data, pending, pagesCount, currentPage, total } = storeToRefs(store)
           <UButton
             color="error"
             :icon="ICONS_HERO.TRASH_16_SOLID"
+            @click="modal.open()"
           />
         </div>
       </template>

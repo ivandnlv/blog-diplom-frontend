@@ -1,0 +1,7 @@
+@utility z-max {
+  @apply z-[var(--max-z-index)];
+}
+
+@utility z-lower-max {
+  @apply z-[calc(var(--max-z-index)_-_1)]
+}
