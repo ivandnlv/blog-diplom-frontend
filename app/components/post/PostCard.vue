@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { PostEntity } from '~/types/post'
+import type { PostMinEntity } from '~/types/post'
 
 defineProps<{
-  post: PostEntity
+  post: PostMinEntity
 }>()
 </script>
 
@@ -10,10 +10,6 @@ defineProps<{
   <UCard>
     <div class="flex flex-col gap-3">
       <span class="text-xl font-bold">{{ post.title }}</span>
-
-      <p class="text-zinc-400 line-clamp-4">
-        {{ post.content }}
-      </p>
     </div>
   </UCard>
 </template>

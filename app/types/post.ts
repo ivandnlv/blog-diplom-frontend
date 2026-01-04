@@ -1,10 +1,13 @@
 import type { BaseEntity } from '~/types/index'
 
-export interface PostEntity extends BaseEntity {
+export interface PostMinEntity extends BaseEntity {
   title: string
   slug: string
-  content: string
   published: string
   createdAt: string
   updatedAt: string
+}
+
+export interface PostEntity extends PostMinEntity {
+  content: string
 }

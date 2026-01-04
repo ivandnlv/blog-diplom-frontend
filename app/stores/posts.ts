@@ -1,5 +1,5 @@
 import { postsApi } from '~/api/posts'
-import type { PostEntity } from '~/types/post'
+import type { PostEntity, PostMinEntity } from '~/types/post'
 
 export const usePostsStore = defineStore('store:posts', () => {
   async function fetchPosts() {
@@ -9,7 +9,7 @@ export const usePostsStore = defineStore('store:posts', () => {
   }
 
   const { data, pending } = useAsyncData('data:posts', fetchPosts, {
-    default: () => [] as PostEntity[]
+    default: () => [] as PostMinEntity[]
   })
 
   return {

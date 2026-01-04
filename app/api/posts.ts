@@ -1,10 +1,10 @@
 import type { BasePaginationResponse } from '~/types/api'
-import type { PostEntity } from '~/types/post'
+import type { PostMinEntity } from '~/types/post'
 import { apiFetch } from '~/plugins/fetch'
 
 export interface PostsApiType {
   GetList: {
-    Response: BasePaginationResponse<PostEntity>
+    Response: BasePaginationResponse<PostMinEntity>
   }
 }
 

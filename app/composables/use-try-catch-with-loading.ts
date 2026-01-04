@@ -2,7 +2,7 @@ import { useTryCatch, type UseTryCatchHandler } from '~/composables/use-try-catc
 import { useIsLoading } from '~/composables/use-is-loading'
 
 export interface UseTryCatchWithLoadingOptions {
-  catchCallback?: (e: string) => void
+  catchCallback?: ((e?: string) => void) | ((e?: string) => Promise<void>)
   finallyCallback?: () => void
 }
 

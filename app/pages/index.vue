@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { SITEMAP } from '~/constants/app/sitemap'
-
 const store = usePostsStore()
 const { data } = storeToRefs(store)
 </script>

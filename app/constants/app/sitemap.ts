@@ -38,11 +38,19 @@ const adminPosts: SitemapRoute = {
   icon: ICONS_HERO.RECTANGLE_GROUP_20_SOLID
 }
 
+const adminPostsId: SitemapRoute = {
+  name: 'Публикация',
+  route: {
+    name: APP_ROUTES.adminPostsId
+  }
+}
+
 export const SITEMAP = {
   index,
   auth,
   authRegister,
   authLogout,
 
-  adminPosts
+  adminPosts,
+  adminPostsId
 }

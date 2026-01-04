@@ -4,7 +4,7 @@ import { SITEMAP } from '~/constants/app/sitemap'
 const { logout } = useAuthStore()
 
 onMounted(async () => {
-  logout()
+  logout(false)
   await navigateTo(SITEMAP.index.route)
 })
 </script>

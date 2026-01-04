@@ -5,5 +5,6 @@ export const APP_ROUTES: Record<string, AppRouteName> = {
   auth: 'auth' as const,
   authRegister: 'auth-register' as const,
   authLogout: 'auth-logout' as const,
-  adminPosts: 'admin-posts' as const
+  adminPosts: 'admin-posts' as const,
+  adminPostsId: 'admin-posts-id' as const
 }
