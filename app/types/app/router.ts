@@ -4,6 +4,6 @@ export type AppRouteName = keyof TypesConfig['RouteNamedMap']
 
 export interface SitemapRoute {
   name: string
-  route: RouteLocationRaw
+  route: Exclude<RouteLocationRaw, string>
   icon?: string
 }

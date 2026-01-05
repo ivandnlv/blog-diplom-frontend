@@ -3,7 +3,7 @@ import type { BaseEntity } from '~/types/index'
 export interface PostMinEntity extends BaseEntity {
   title: string
   slug: string
-  published: string
+  published: boolean
   createdAt: string
   updatedAt: string
 }

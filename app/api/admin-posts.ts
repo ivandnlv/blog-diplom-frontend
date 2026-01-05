@@ -1,4 +1,5 @@
-import type { BasePaginationQuery, BasePaginationResponse, BaseResponse, BaseSuccessResponse } from '~/types/api'
+import type { BasePaginationQuery, BasePaginationResponse, BaseSuccessResponse } from '~/types/api'
+import type { AdminPostsBody } from '~/types/admin/posts'
 import type { PostEntity, PostMinEntity } from '~/types/post'
 import { apiFetch } from '~/plugins/fetch'
 
@@ -9,6 +10,16 @@ export interface AdminPostsApiType {
   }
 
   GetById: {
+    Response: BaseSuccessResponse<PostEntity>
+  }
+
+  Post: {
+    Body: AdminPostsBody
+    Response: BaseSuccessResponse<PostEntity>
+  }
+
+  Patch: {
+    Body: Partial<AdminPostsBody>
     Response: BaseSuccessResponse<PostEntity>
   }
 }
@@ -22,5 +33,19 @@ export const adminPostsApi = {
 
   async getById(id: string) {
     return await apiFetch<AdminPostsApiType['GetById']['Response']>(`/admin/posts/${id}`)
+  },
+
+  async post(body: AdminPostsApiType['Post']['Body']) {
+    return await apiFetch<AdminPostsApiType['Post']['Response']>('/admin/posts', {
+      method: 'POST',
+      body
+    })
+  },
+
+  async patch(postId: number, body: AdminPostsApiType['Patch']['Body']) {
+    return await apiFetch<AdminPostsApiType['Patch']['Response']>(`/admin/posts/${postId}`, {
+      method: 'PATCH',
+      body
+    })
   }
 }

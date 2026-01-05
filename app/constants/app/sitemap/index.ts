@@ -1,6 +1,6 @@
 import type { SitemapRoute } from '~/types/app/router'
 import { APP_ROUTES } from '~/constants/app/routes'
-import { ICONS_HERO } from '~/constants/icons/hero'
+import { adminSitemap } from '~/constants/app/sitemap/admin'
 
 const index: SitemapRoute = {
   name: 'Главная',
@@ -30,27 +30,11 @@ const authLogout: SitemapRoute = {
   }
 }
 
-const adminPosts: SitemapRoute = {
-  name: 'Публикации',
-  route: {
-    name: APP_ROUTES.adminPosts
-  },
-  icon: ICONS_HERO.RECTANGLE_GROUP_20_SOLID
-}
-
-const adminPostsId: SitemapRoute = {
-  name: 'Публикация',
-  route: {
-    name: APP_ROUTES.adminPostsId
-  }
-}
-
 export const SITEMAP = {
   index,
   auth,
   authRegister,
   authLogout,
 
-  adminPosts,
-  adminPostsId
+  ...adminSitemap
 }

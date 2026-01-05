@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SITEMAP } from '~/constants/app/sitemap.js'
+import { SITEMAP } from '~/constants/app/sitemap'
 import { ICONS_HERO } from '~/constants/icons/hero'
 </script>
 

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { adminPostsApi } from '~/api/admin-posts'
+import { SITEMAP } from '~/constants/app/sitemap'
 
 definePageMeta({
   layout: 'admin'
@@ -25,11 +26,17 @@ const { data, pending } = useAsyncData(`post-data-${id}`, fetchPost, { default: 
   />
 
   <div
-    v-else
-    class="flex flex-col w-full h-full"
+    v-else-if="data"
+    class="flex flex-col w-full h-full gap-8"
   >
     <h1 class="title-main">
-      {{ data.title }}
+      {{ SITEMAP.adminPostsId.name }}
     </h1>
+
+    <UCard>
+      <AdminPostsForm
+        :post="data"
+      />
+    </UCard>
   </div>
 </template>

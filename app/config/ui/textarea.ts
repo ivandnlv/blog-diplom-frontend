@@ -1,6 +1,6 @@
 import type { NuxtUiConfigType } from '~/types/utilities/nuxt-ui-config-type'
 
-export const input: NuxtUiConfigType['input'] = {
+export const textarea: NuxtUiConfigType['textarea'] = {
   slots: {
     root: 'w-full'
   },
