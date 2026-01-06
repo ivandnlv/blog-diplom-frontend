@@ -11,7 +11,6 @@ export default defineNuxtConfig({
     '~/plugins/fetch',
     '~/plugins/auth'
   ],
-  ssr: false,
 
   devtools: {
     enabled: false

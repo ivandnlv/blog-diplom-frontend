@@ -1,5 +1,9 @@
+<script lang="ts" setup>
+import { ru } from '@nuxt/ui/locale'
+</script>
+
 <template>
-  <UApp>
+  <UApp :locale="ru">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

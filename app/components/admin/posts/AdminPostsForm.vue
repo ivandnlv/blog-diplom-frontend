@@ -68,12 +68,9 @@ const { runWithLoading: onSubmit, isLoading: isSubmitting } = useTryCatchWithLoa
       label="Контент"
       required
     >
-      <ClientOnly>
-        <LazyEditorMain
-          v-model="state.content"
-          placeholder="Введите контент"
-        />
-      </ClientOnly>
+      <AdminUiEditor
+        v-model="state.content"
+      />
     </UFormField>
 
     <UButton
