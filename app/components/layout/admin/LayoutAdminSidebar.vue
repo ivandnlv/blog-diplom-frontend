@@ -12,9 +12,9 @@ const [isCollapsed, toggleCollapsed] = useToggle(true)
 
 <template>
   <aside
-    class="flex flex-col gap-12 h-full bg-zinc-950 border-r border-zinc-800 py-6 px-4 max-w-[65px] overflow-hidden transition-[max-width]"
+    class="flex flex-col gap-12 h-full bg-zinc-950 border-r border-zinc-800 py-6 px-4 max-w-[var(--admin-sidebar-width)] overflow-hidden transition-[max-width]"
     :class="{
-      'max-w-[450px]': !isCollapsed
+      '!max-w-[450px]': !isCollapsed
     }"
     @mousemove="toggleCollapsed(false)"
     @mouseleave="toggleCollapsed(true)"
