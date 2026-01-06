@@ -1,4 +1,5 @@
 export default defineNuxtConfig({
+
   modules: [
     '@nuxt/eslint',
     '@nuxt/ui',
@@ -10,6 +11,7 @@ export default defineNuxtConfig({
     '~/plugins/fetch',
     '~/plugins/auth'
   ],
+  ssr: false,
 
   devtools: {
     enabled: false
