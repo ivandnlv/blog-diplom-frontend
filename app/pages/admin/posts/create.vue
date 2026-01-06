@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { SITEMAP } from '~/constants/app/sitemap'
 import type { PostEntity } from '~/types/post'
+import { useAdminLayoutBack } from '~/composables/admin/use-admin-layout-back'
 
 definePageMeta({
   layout: 'admin'
 })
+
+useAdminLayoutBack(SITEMAP.adminPosts.route)
 
 const onPostCreate = async (post: PostEntity) => {
   await navigateTo({

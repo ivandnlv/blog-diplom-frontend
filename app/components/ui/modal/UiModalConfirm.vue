@@ -19,6 +19,11 @@ const onCancel = () => {
   emit('close', true)
   emit('cancel')
 }
+
+const onConfirm = () => {
+  emit('confirm')
+  emit('close', true)
+}
 </script>
 
 <template>
@@ -30,11 +35,6 @@ const onCancel = () => {
     }"
   >
     <template #body>
-      <p
-        v-if="description"
-        v-html="description"
-      />
-
       <div class="flex w-full gap-4">
         <UButton
           block
@@ -46,7 +46,7 @@ const onCancel = () => {
         <UButton
           block
           :label="confirmBtnLabel"
-          @click="emit('confirm')"
+          @click="onConfirm()"
         />
       </div>
     </template>

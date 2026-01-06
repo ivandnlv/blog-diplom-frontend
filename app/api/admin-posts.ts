@@ -47,5 +47,11 @@ export const adminPostsApi = {
       method: 'PATCH',
       body
     })
+  },
+
+  async delete(postId: number) {
+    return await apiFetch<BaseSuccessResponse>(`/admin/posts/${postId}`, {
+      method: 'DELETE'
+    })
   }
 }

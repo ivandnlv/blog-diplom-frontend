@@ -3,7 +3,7 @@ import type { PostEntity } from '~/types/post'
 import { usePagination } from '~/composables/use-pagination'
 
 export const useAdminPostsStore = defineStore('store:admin-post', () => {
-  const { getPaginationQuery, currentPage, setTotal, pagesCount, total } = usePagination({
+  const { getPaginationQuery, currentPage, setTotal, pagesCount, total, setFirstPage } = usePagination({
     limit: 20,
     uniqueId: 'admin-posts-main-store'
   })
@@ -20,11 +20,17 @@ export const useAdminPostsStore = defineStore('store:admin-post', () => {
 
   watch(currentPage, () => refresh())
 
+  const resetAndRefresh = () => {
+    setFirstPage()
+    refresh()
+  }
+
   return {
     data,
     pending,
     currentPage,
     pagesCount,
-    total
+    total,
+    resetAndRefresh
   }
 })

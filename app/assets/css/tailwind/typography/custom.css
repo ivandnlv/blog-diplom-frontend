@@ -5,5 +5,5 @@
 
 /* Более меньший заголовок (можно использовать в модалках или в заголовках для блоков) */
 @utility title-secondary {
-  @apply text-2xl;
+  @apply text-2xl font-semibold;
 }

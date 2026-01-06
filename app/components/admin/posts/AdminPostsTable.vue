@@ -6,17 +6,36 @@ import { formatBoolean } from '~/helpers/format/boolean'
 import { formatISOtoDDMMYYYY } from '~/helpers/format/date'
 import { LazyUiModalConfirm } from '#components'
 import { SITEMAP } from '~/constants/app/sitemap'
+import { adminPostsApi } from '~/api/admin-posts'
 
 defineProps<{
   posts: PostMinEntity[]
 }>()
 
+const emit = defineEmits<{
+  (e: 'deleted'): void
+}>()
+
+async function deletePost(id: number) {
+  await adminPostsApi.delete(id)
+
+  useSuccessNotification('Публикация удалена!')
+
+  emit('deleted')
+}
+
+const deletePostWithTryCatch = useTryCatch(deletePost)
+
 const overlay = useOverlay()
-const modal = overlay.create(LazyUiModalConfirm, {
-  props: {
-    description: 'Вы действительно хотите удалить публикацию?'
-  }
-})
+
+const onModalOpen = (postId: number) => {
+  overlay.create(LazyUiModalConfirm, {
+    props: {
+      description: 'Вы действительно хотите удалить публикацию?',
+      onConfirm: () => deletePostWithTryCatch(postId)
+    }
+  }).open()
+}
 </script>
 
 <template>
@@ -51,7 +70,7 @@ const modal = overlay.create(LazyUiModalConfirm, {
         <UButton
           color="error"
           :icon="ICONS_HERO.TRASH_16_SOLID"
-          @click="modal.open()"
+          @click="() => onModalOpen(row.original.id)"
         />
       </div>
     </template>

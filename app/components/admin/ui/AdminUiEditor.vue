@@ -74,7 +74,7 @@ const tools: EditorToolbarItem[][] = [
   <UEditor
     v-slot="{ editor }"
     v-model="model"
-    content-type="markdown"
+    content-type="html"
     class="w-full min-h-21"
   >
     <UEditorToolbar
