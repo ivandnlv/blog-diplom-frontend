@@ -23,25 +23,23 @@ useAdminLayoutBack(SITEMAP.adminPosts.route)
 </script>
 
 <template>
-  <u-skeleton
-    v-if="pending"
-    class="size-full"
-  />
-
   <div
-    v-else-if="data"
     class="flex flex-col w-full h-full gap-8"
   >
     <h1 class="title-main">
       {{ SITEMAP.adminPostsId.name }}
     </h1>
 
-    <AdminPostsPublished :post="data" />
+    <UiLoader v-if="pending" />
 
-    <UCard>
-      <AdminPostsForm
-        :post="data"
-      />
-    </UCard>
+    <template v-else-if="data">
+      <AdminPostsPublished :post="data" />
+
+      <UCard>
+        <AdminPostsForm
+          :post="data"
+        />
+      </UCard>
+    </template>
   </div>
 </template>

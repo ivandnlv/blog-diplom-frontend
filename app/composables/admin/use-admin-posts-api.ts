@@ -1,8 +1,8 @@
+import { usePagination } from '~/composables/use-pagination'
 import { adminPostsApi } from '~/api/admin-posts'
 import type { PostEntity } from '~/types/post'
-import { usePagination } from '~/composables/use-pagination'
 
-export const useAdminPostsStore = defineStore('store:admin-post', () => {
+export const useAdminPostsApi = (uniqueId: string) => {
   const { getPaginationQuery, currentPage, setTotal, pagesCount, total, setFirstPage } = usePagination({
     limit: 20,
     uniqueId: 'admin-posts-main-store'
@@ -33,4 +33,4 @@ export const useAdminPostsStore = defineStore('store:admin-post', () => {
     total,
     resetAndRefresh
   }
-})
+}

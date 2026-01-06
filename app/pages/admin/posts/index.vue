@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { SITEMAP } from '~/constants/app/sitemap'
-import { useAdminPostsStore } from '~/stores/admin/posts'
 import AdminUiEmpty from '~/components/admin/ui/AdminUiEmpty.vue'
+import { useAdminPostsApi } from '~/composables/admin/use-admin-posts-api'
 
 definePageMeta({
   layout: 'admin'
 })
 
-const store = useAdminPostsStore()
-const { data, pending, pagesCount, currentPage, total } = storeToRefs(store)
+const { data, pending, pagesCount, currentPage, total, resetAndRefresh } = useAdminPostsApi('admin-posts')
 
 const emptyDescription = `Создайте первую публикацию <br/> С помощью кнопки «Создать»`
 </script>
@@ -34,7 +33,7 @@ const emptyDescription = `Создайте первую публикацию <br
     <AdminPostsTable
       v-else-if="data?.length"
       :posts="data"
-      @deleted="store.resetAndRefresh"
+      @deleted="resetAndRefresh"
     />
 
     <AdminUiEmpty

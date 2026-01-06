@@ -7,6 +7,7 @@ import { formatISOtoDDMMYYYY } from '~/helpers/format/date'
 import { LazyUiModalConfirm } from '#components'
 import { SITEMAP } from '~/constants/app/sitemap'
 import { adminPostsApi } from '~/api/admin-posts'
+import { useTryCatch } from '~/composables/use-try-catch'
 
 defineProps<{
   posts: PostMinEntity[]
@@ -43,6 +44,18 @@ const onModalOpen = (postId: number) => {
     :data="posts"
     :columns="POSTS_ADMIN_TABLE_COLUMNS"
   >
+    <template #title-cell="{ row }">
+      <NuxtLink
+        class="hover:text-primary transition-colors"
+        :to="{
+          ...SITEMAP.adminPostsId.route,
+          params: {
+            id: row.original.id
+          }
+        }"
+      >{{ row.original.title }}</NuxtLink>
+    </template>
+
     <template #published-cell="{ row }">
       {{ formatBoolean(row.original.published) }}
     </template>
