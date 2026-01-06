@@ -36,6 +36,8 @@ useAdminLayoutBack(SITEMAP.adminPosts.route)
       {{ SITEMAP.adminPostsId.name }}
     </h1>
 
+    <AdminPostsPublished :post="data" />
+
     <UCard>
       <AdminPostsForm
         :post="data"
