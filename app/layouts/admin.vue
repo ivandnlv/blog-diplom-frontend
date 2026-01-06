@@ -13,10 +13,10 @@ const { backRoute } = storeToRefs(store)
         class="fixed left-0 top-0 z-lower-max"
       />
 
-      <main class="w-full relative ml-[var(--admin-sidebar-width)] py-12">
+      <main class="max-2xl:flex w-full relative ml-(--admin-sidebar-width) py-12 max-2xl:px-8">
         <UButton
           v-if="backRoute"
-          class="absolute left-6 top-6"
+          class="2xl:absolute left-6 top-6 h-fit"
           color="secondary"
           :icon="ICONS_HERO.ARROW_LEFT_16_SOLID"
           :to="backRoute"

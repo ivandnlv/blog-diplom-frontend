@@ -11,7 +11,7 @@ const adminPosts: SitemapRoute = {
 }
 
 const adminPostsId: SitemapRoute = {
-  name: 'Публикация',
+  name: 'Редактирование публикации',
   route: {
     name: APP_ROUTES.adminPostsId
   }
