@@ -40,6 +40,10 @@ const { data, pending } = useAsyncData(`data:post-${slug}`, getPost, { default: 
         <PostComments
           :post="data"
         />
+
+        <template #fallback>
+          <UiLoader />
+        </template>
       </ClientOnly>
     </template>
   </div>

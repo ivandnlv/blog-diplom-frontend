@@ -8,7 +8,7 @@ const props = defineProps<{
   post: PostEntity
 }>()
 
-const { getPaginationQuery, setTotal } = usePagination({
+const { getPaginationQuery, setTotal, setFirstPage } = usePagination({
   uniqueId: `pagination:post-${props.post.id}-comments`
 })
 
@@ -20,9 +20,15 @@ async function fetchCommentsByPost() {
   return data.items
 }
 
-const { data, pending } = useLazyAsyncData(`data:post-${props.post.id}-comments`, fetchCommentsByPost, {
-  default: () => [] as PostCommentEntity[]
+const { data, pending, refresh } = useLazyAsyncData(`data:post-${props.post.id}-comments`, fetchCommentsByPost, {
+  default: () => [] as PostCommentEntity[],
+  server: false
 })
+
+const resetAndRefresh = () => {
+  setFirstPage()
+  refresh()
+}
 </script>
 
 <template>
@@ -33,14 +39,16 @@ const { data, pending } = useLazyAsyncData(`data:post-${props.post.id}-comments`
 
     <UiLoader v-if="pending" />
 
-    <ul v-if="data.length">
-      <li
-        v-for="item in data"
-        :key="item.id"
-      >
-        {{ item.content }}
-      </li>
-    </ul>
+    <div
+      v-if="data.length"
+      class="flex flex-col gap-4"
+    >
+      <PostCommentsItem
+        v-for="comment in data"
+        :key="comment.id"
+        :comment="comment"
+      />
+    </div>
 
     <UiEmpty
       v-else
@@ -53,6 +61,7 @@ const { data, pending } = useLazyAsyncData(`data:post-${props.post.id}-comments`
     <UCard>
       <PostCommentsForm
         :post-id="post.id"
+        @success="resetAndRefresh()"
       />
     </UCard>
   </div>
