@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { SITEMAP } from '~/constants/app/sitemap'
-import AdminUiEmpty from '~/components/admin/ui/AdminUiEmpty.vue'
+import AdminUiEmpty from '~/components/ui/AdminUiEmpty.vue'
 import { useAdminPostsApi } from '~/composables/admin/use-admin-posts-api'
 
 definePageMeta({

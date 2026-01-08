@@ -15,7 +15,7 @@ const { data, pending } = useAsyncData(`data:post-${slug}`, getPost, { default: 
 </script>
 
 <template>
-  <div class="flex flex-col gap-8">
+  <div class="flex flex-col gap-12">
     <h1 class="title-main">
       <USkeleton
         v-if="pending"
@@ -31,8 +31,16 @@ const { data, pending } = useAsyncData(`data:post-${slug}`, getPost, { default: 
 
     <UiLoader v-if="pending" />
 
-    <UCard v-else-if="data">
-      <UiHtmlContent :content="data.content" />
-    </UCard>
+    <template v-else-if="data">
+      <UCard>
+        <UiHtmlContent :content="data.content" />
+      </UCard>
+
+      <ClientOnly>
+        <PostComments
+          :post="data"
+        />
+      </ClientOnly>
+    </template>
   </div>
 </template>
