@@ -7,7 +7,7 @@ const { data } = storeToRefs(store)
   <div class="flex flex-col gap-12">
     <div
       v-if="data?.length"
-      class="flex flex-col max-w-[526px] mx-auto gap-6"
+      class="flex flex-col max-w-[626px] w-full mx-auto gap-6"
     >
       <PostCard
         v-for="post in data"
