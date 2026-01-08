@@ -16,9 +16,7 @@ const { data, pending } = useAsyncData(`data:post-${slug}`, getPost, { default: 
 
 <template>
   <div class="flex flex-col gap-8">
-    <h1>
-      {{ SITEMAP.postsSlug.name }}
-
+    <h1 class="title-main">
       <USkeleton
         v-if="pending"
         class="w-12 h-6"
@@ -26,12 +24,15 @@ const { data, pending } = useAsyncData(`data:post-${slug}`, getPost, { default: 
       <template v-else-if="data">
         {{ data.title }}
       </template>
+      <template v-else>
+        {{ SITEMAP.postsSlug.name }}
+      </template>
     </h1>
 
     <UiLoader v-if="pending" />
 
     <UCard v-else-if="data">
-      <div v-html="data.content" />
+      <UiHtmlContent :content="data.content" />
     </UCard>
   </div>
 </template>
