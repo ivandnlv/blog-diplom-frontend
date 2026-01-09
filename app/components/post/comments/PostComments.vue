@@ -47,6 +47,7 @@ const resetAndRefresh = () => {
         v-for="comment in data"
         :key="comment.id"
         :comment="comment"
+        @answered="resetAndRefresh()"
       />
     </div>
 

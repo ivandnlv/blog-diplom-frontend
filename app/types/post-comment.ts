@@ -1,7 +1,7 @@
 import type { BaseEntity } from '~/types/index'
 
 export interface PostCommentEntity extends BaseEntity {
-  postId: string
+  postId: number
   parentId: string
   authorName: string
   authorEmail: string

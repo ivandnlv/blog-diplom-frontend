@@ -5,7 +5,8 @@ import { appValidator } from '~/helpers/validation'
 
 const props = defineProps<{
   postId: number
-  parentId?: string
+  parentId?: number
+  buttonBlock?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -21,7 +22,7 @@ const state = reactive<PostsCommentsApiType['Post']['Body']>({
   authorEmail: savedUserData.value?.email,
   authorName: savedUserData.value?.name ?? '',
   content: '',
-  parentId: undefined
+  parentId: props?.parentId ?? undefined
 })
 
 const schema = object({
@@ -112,6 +113,7 @@ const onClear = () => {
       <UButton
         type="reset"
         color="secondary"
+        :block="buttonBlock"
         @click="onClear"
       >
         Очистить
@@ -119,6 +121,7 @@ const onClear = () => {
 
       <UButton
         type="submit"
+        :block="buttonBlock"
         :loading="isSubmitLoading"
       >
         Отправить
