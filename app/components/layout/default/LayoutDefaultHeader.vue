@@ -24,12 +24,23 @@ const { isLoggedIn, user } = storeToRefs(useAuthStore())
           </UButton>
         </div>
 
-        <UButton
+        <div
           v-else
-          :to="SITEMAP.auth.route"
+          class="flex gap-4 items-center"
         >
-          Войти
-        </UButton>
+          <UButton
+            :to="SITEMAP.auth.route"
+          >
+            Войти
+          </UButton>
+
+          <UButton
+            color="secondary"
+            :to="SITEMAP.authRegister.route"
+          >
+            Зарегистрироваться
+          </UButton>
+        </div>
       </div>
     </UContainer>
   </header>

@@ -5,7 +5,8 @@ export default withNuxt(
   // Your custom configs here
   {
     rules: {
-      'vue/no-v-html': 0
+      'vue/no-v-html': 0,
+      '@typescript-eslint/no-explicit-any': 0
     }
   }
 )

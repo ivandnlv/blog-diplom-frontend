@@ -2,6 +2,7 @@
 import type { PostCommentEntity } from '~/types/post-comment'
 import { formatISOToDateWithConditions } from '~/helpers/format/date'
 import { LazyPostCommentsFormModal } from '#components'
+import { useAuthRequiredCallbackWrapper } from '~/composables/use-auth-required-callback-wrapper'
 
 const props = defineProps<{
   comment: PostCommentEntity
@@ -23,16 +24,10 @@ const answerModal = overlay.create(LazyPostCommentsFormModal, {
 })
 
 const name = computed(() => {
-  if (!props.comment.authorEmail) {
-    return props.comment.authorName
-  }
-
-  return `${props.comment.authorName} (${props.comment.authorEmail})`
+  return props.comment.author?.email ?? ''
 })
 
-const onAnswer = () => {
-  answerModal.open()
-}
+const onAnswer = useAuthRequiredCallbackWrapper(() => answerModal.open())
 </script>
 
 <template>
