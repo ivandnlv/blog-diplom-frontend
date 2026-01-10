@@ -3,10 +3,14 @@ import type { PostCommentEntity } from '~/types/post-comment'
 import { formatISOToDateWithConditions } from '~/helpers/format/date'
 import { LazyPostCommentsFormModal } from '#components'
 import { useAuthRequiredCallbackWrapper } from '~/composables/use-auth-required-callback-wrapper'
+import { useAuthStore } from '~/stores/auth'
 
 const props = defineProps<{
   comment: PostCommentEntity
 }>()
+
+const authStore = useAuthStore()
+const { user } = storeToRefs(authStore)
 
 const emit = defineEmits<{
   (e: 'answered'): void
@@ -27,7 +31,9 @@ const name = computed(() => {
   return props.comment.author?.email ?? ''
 })
 
-const onAnswer = useAuthRequiredCallbackWrapper(() => answerModal.open())
+const onAnswer = useAuthRequiredCallbackWrapper(() => answerModal.open(), {
+  description: 'Чтобы оставить комментарий, вам необходимо авторизоваться'
+})
 </script>
 
 <template>
@@ -52,6 +58,7 @@ const onAnswer = useAuthRequiredCallbackWrapper(() => answerModal.open())
     <p>{{ comment.content }}</p>
 
     <UButton
+      v-if="comment.author?.id !== user?.id"
       class="w-fit self-end"
       color="secondary"
       @click="onAnswer()"

@@ -42,7 +42,9 @@ const onClear = () => {
   formRef.value?.clear()
 }
 
-const onSubmitWrapped = useAuthRequiredCallbackWrapper(onSubmit)
+const onSubmitWrapped = useAuthRequiredCallbackWrapper(onSubmit, {
+  description: 'Чтобы оставить комментарий, вам необходимо авторизоваться'
+})
 </script>
 
 <template>

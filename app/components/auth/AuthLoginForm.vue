@@ -14,6 +14,7 @@ const props = withDefaults(defineProps<{
 
 const emit = defineEmits<{
   (e: 'switch', value: AuthType): void
+  (e: 'success'): void
 }>()
 
 const serverErrorMessage = ref('')
@@ -42,6 +43,8 @@ const { runWithLoading: login, isLoading: isLoggingIn } = useTryCatchWithLoading
     if (!user.value) return
 
     await redirectAfterAuthByRole(user.value.role)
+
+    emit('success')
   })
 }, {
   catchCallback: message => serverErrorMessage.value = message ?? ''

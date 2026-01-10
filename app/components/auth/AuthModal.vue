@@ -2,12 +2,14 @@
 import type { ComponentInstance } from 'vue'
 import { LazyAuthLoginForm, LazyAuthRegisterForm } from '#components'
 
-export type AuthType = 'login' | 'register'
-
-withDefaults(defineProps<{
+export interface AuthModalProps {
   title?: string
   description?: string
-}>(), {
+}
+
+export type AuthType = 'login' | 'register'
+
+withDefaults(defineProps<AuthModalProps>(), {
   title: 'Авторизация на платформе',
   description: 'Заполните форму, чтобы получить полный доступ к функционалу'
 })
@@ -31,11 +33,12 @@ const componentsByMode: Record<AuthType, ComponentInstance<any>> = {
     :title="title"
     :description="description"
   >
-    <template #body>
+    <template #body="{ close }">
       <component
         :is="componentsByMode[currentMode]"
         switch-mode="emit"
         @switch="onFormSwitch"
+        @success="close"
       />
     </template>
   </UModal>
