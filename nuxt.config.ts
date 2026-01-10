@@ -1,11 +1,6 @@
 export default defineNuxtConfig({
 
-  modules: [
-    '@nuxt/eslint',
-    '@nuxt/ui',
-    '@pinia/nuxt',
-    '@vueuse/nuxt'
-  ],
+  modules: ['@nuxt/eslint', '@nuxt/ui', '@pinia/nuxt', '@vueuse/nuxt', '@nuxt/image'],
 
   plugins: [
     '~/plugins/fetch',
