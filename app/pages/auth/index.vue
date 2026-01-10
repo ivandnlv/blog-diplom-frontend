@@ -33,13 +33,13 @@ const { runWithLoading: login, isLoading: isLoggingIn } = useTryCatchWithLoading
 
   await authStore.fetchMe()
 
-  nextTick(async () => {
+  await nextTick(async () => {
     if (!user.value) return
 
     await redirectAfterAuthByRole(user.value.role)
   })
 }, {
-  catchCallback: message => serverErrorMessage.value = message
+  catchCallback: message => serverErrorMessage.value = message ?? ''
 })
 </script>
 

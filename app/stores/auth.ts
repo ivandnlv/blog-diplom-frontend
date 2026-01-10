@@ -29,8 +29,12 @@ export const useAuthStore = defineStore('store:auth', () => {
 
     user.value = data
   }, {
-    catchCallback: logout
+    catchCallback: () => logout()
   })
+
+  const setUser = (value: UserEntity) => {
+    user.value = value
+  }
 
   return {
     accessToken,
@@ -38,6 +42,7 @@ export const useAuthStore = defineStore('store:auth', () => {
     fetchMe,
     isMeLoading,
     user,
-    logout
+    logout,
+    setUser
   }
 })

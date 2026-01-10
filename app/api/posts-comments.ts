@@ -4,13 +4,13 @@ import { apiFetch } from '~/plugins/fetch'
 
 export interface PostsCommentsApiType {
   Get: {
-    Query: BasePaginationQuery
+    Query: BasePaginationQuery & {
+      parentId?: number
+    }
     Response: BasePaginationResponse<PostCommentEntity>
   }
   Post: {
     Body: {
-      authorName: string
-      authorEmail?: string
       content: string
       parentId?: number
     }
