@@ -6,11 +6,21 @@ export const appValidator = {
   requiredEmail,
   requiredPassword,
   isEmail,
-  requiredMaxLength
+  requiredMaxLength,
+  isUrl,
+  requiredUrl
 }
 
 function isEmail() {
   return string().email(VALIDATION_ERRORS.EMAIL)
+}
+
+function isUrl() {
+  return string().url(VALIDATION_ERRORS.URL)
+}
+
+function requiredUrl() {
+  return required().url(VALIDATION_ERRORS.URL)
 }
 
 function required() {

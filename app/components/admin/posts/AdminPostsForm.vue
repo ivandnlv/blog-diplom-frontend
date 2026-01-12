@@ -12,7 +12,9 @@ const props = defineProps<{
 const state = reactive<AdminPostsBody>({
   title: props.post?.title || '',
   content: props.post?.content || '',
-  published: props.post?.published || undefined
+  published: props.post?.published || undefined,
+  contentImagesUrls: undefined,
+  thumbnailUrl: undefined
 })
 
 const schema = object({

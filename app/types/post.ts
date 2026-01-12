@@ -6,6 +6,8 @@ export interface PostMinEntity extends BaseEntity {
   published: boolean
   createdAt: string
   updatedAt: string
+  thumbnailUrl?: string
+  contentImagesUrls?: string[]
 }
 
 export interface PostEntity extends PostMinEntity {

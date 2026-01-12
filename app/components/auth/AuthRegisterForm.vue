@@ -22,12 +22,16 @@ const serverErrorMessage = ref('')
 
 const state = reactive<AuthApiType['Register']['Body']>({
   email: '',
-  password: ''
+  password: '',
+  username: '',
+  avatarUrl: undefined
 })
 
 const schema = object({
   email: appValidator.requiredEmail(),
-  password: appValidator.requiredPassword()
+  password: appValidator.requiredPassword(),
+  username: appValidator.required(),
+  avatarUrl: appValidator.isUrl()
 })
 
 const authStore = useAuthStore()
@@ -79,6 +83,17 @@ const loginButtonAttrs = computed(() => {
       <UInput
         v-model="state.email"
         placeholder="Введите email"
+      />
+    </UFormField>
+
+    <UFormField
+      label="Имя"
+      name="username"
+      required
+    >
+      <UInput
+        v-model="state.username"
+        placeholder="Введите ваше имя или псевдоним"
       />
     </UFormField>
 

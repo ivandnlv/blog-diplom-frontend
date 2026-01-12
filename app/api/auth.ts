@@ -18,6 +18,8 @@ export interface AuthApiType {
     Body: {
       email: string
       password: string
+      username: string
+      avatarUrl?: string
     }
     Response: BaseSuccessResponse<{
       user: UserEntity
