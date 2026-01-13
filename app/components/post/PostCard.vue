@@ -24,6 +24,12 @@ const postLink = computed(() => ({
     <div class="flex flex-col gap-3">
       <span class="text-zinc-500">{{ dateStr }}</span>
 
+      <NuxtImg
+        class="rounded-lg overflow-hidden w-full max-h-[250px] object-cover"
+        :src="post?.thumbnailUrl"
+        loading="lazy"
+      />
+
       <NuxtLink
         class="text-xl font-bold transition-colors hover:text-primary"
         :to="postLink"

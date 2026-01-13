@@ -3,7 +3,13 @@ import type { ImageUrlUploadBaseProps } from '~/types/ui/image-url-upload'
 import { LazyUiModalImageUrlUpload } from '#components'
 import { ICONS_HERO } from '~/constants/icons/hero'
 
-const props = defineProps<ImageUrlUploadBaseProps>()
+const props = withDefaults(defineProps<ImageUrlUploadBaseProps & {
+  baseUi?: string
+  imageUi?: string
+}>(), {
+  baseUi: '',
+  imageUi: ''
+})
 
 const model = defineModel<string | undefined>()
 
@@ -26,7 +32,9 @@ const onModalOpen = () => {
 </script>
 
 <template>
-  <div class="flex flex-col justify-center items-center relative rounded-2xl overflow-hidden">
+  <div
+    :class="['flex flex-col w-fit relative rounded-2xl overflow-hidden', baseUi]"
+  >
     <button
       v-if="model"
       class="cursor-pointer flex flex-col justify-center items-center absolute size-full top-0 left-0 opacity-0 hover:opacity-100 transition-opacity bg-gray-950/60"
@@ -40,6 +48,7 @@ const onModalOpen = () => {
 
     <NuxtImg
       v-if="model"
+      :class="imageUi"
       :src="model"
       loading="lazy"
     />

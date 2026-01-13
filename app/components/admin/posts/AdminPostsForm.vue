@@ -14,7 +14,7 @@ const state = reactive<AdminPostsBody>({
   content: props.post?.content || '',
   published: props.post?.published || undefined,
   contentImagesUrls: undefined,
-  thumbnailUrl: undefined
+  thumbnailUrl: props.post?.thumbnailUrl
 })
 
 const schema = object({
@@ -54,6 +54,19 @@ const { runWithLoading: onSubmit, isLoading: isSubmitting } = useTryCatchWithLoa
     :schema="schema"
     @submit.prevent="onSubmit"
   >
+    <UFormField
+      name="thumbnailUrl"
+      label="Обложка"
+      :ui="{
+        root: 'flex flex-col gap-2'
+      }"
+    >
+      <UiImageUrlUpload
+        v-model="state.thumbnailUrl"
+        image-ui="max-h-[200px]"
+      />
+    </UFormField>
+
     <UFormField
       name="title"
       label="Заголовок"

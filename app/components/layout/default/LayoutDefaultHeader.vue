@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { SITEMAP } from '~/constants/app/sitemap'
+import { useSessionStore } from '~/stores/session'
 
 const { isLoggedIn, user } = storeToRefs(useAuthStore())
+
+const { isAdmin } = storeToRefs(useSessionStore())
 </script>
 
 <template>
@@ -21,6 +24,13 @@ const { isLoggedIn, user } = storeToRefs(useAuthStore())
             color="secondary"
           >
             Выйти
+          </UButton>
+
+          <UButton
+            v-if="isAdmin"
+            :to="SITEMAP.adminPosts.route"
+          >
+            Перейти в админку
           </UButton>
         </div>
 

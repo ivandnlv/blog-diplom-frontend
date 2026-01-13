@@ -32,7 +32,18 @@ const { data, pending } = useAsyncData(`data:post-${slug}`, getPost, { default: 
     <UiLoader v-if="pending" />
 
     <template v-else-if="data">
-      <UCard>
+      <UCard
+        :ui="{
+          body: 'flex flex-col gap-6'
+        }"
+      >
+        <NuxtImg
+          v-if="data?.thumbnailUrl"
+          :src="data.thumbnailUrl"
+          loading="lazy"
+          class="w-fit self-center rounded-xl max-h-[400px] object-contain"
+        />
+
         <UiHtmlContent :content="data.content" />
       </UCard>
 
