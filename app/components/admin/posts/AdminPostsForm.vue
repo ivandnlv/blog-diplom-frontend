@@ -85,6 +85,7 @@ const { runWithLoading: onSubmit, isLoading: isSubmitting } = useTryCatchWithLoa
     >
       <AdminUiEditor
         v-model="state.content"
+        @update:images="(images) => state.contentImagesUrls = images"
       />
     </UFormField>
 

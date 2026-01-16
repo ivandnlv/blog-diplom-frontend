@@ -105,5 +105,11 @@ defineProps<{
     font-size: 0.95em;
     white-space: pre;
   }
+
+  img {
+    border-radius: 8px;
+    object-fit: contain;
+    margin: 0 auto;
+  }
 }
 </style>

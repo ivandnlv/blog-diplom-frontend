@@ -14,5 +14,6 @@ export const ICONS_HERO = {
   ITALIC_SOLID: 'i-heroicons-italic-solid' as const,
   UNDERLINE_SOLID: 'i-heroicons-underline-solid' as const,
   STRIKETHROUGH_SOLID: 'i-heroicons-strikethrough-solid' as const,
-  CODE_BRACKET_SOLID: 'i-heroicons-code-bracket-solid' as const
+  CODE_BRACKET_SOLID: 'i-heroicons-code-bracket-solid' as const,
+  PHOTO_20_SOLID: 'i-heroicons-photo-20-solid' as const
 }
