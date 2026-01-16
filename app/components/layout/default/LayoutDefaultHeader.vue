@@ -8,11 +8,11 @@ const { isAdmin } = storeToRefs(useSessionStore())
 </script>
 
 <template>
-  <header class="w-full z-50 border-b border-zinc-800 bg-[#0f0f10]/80 backdrop-blur-md">
+  <header class="w-full z-50 border-b border-default bg-(--ui-bg)/80 backdrop-blur-md">
     <UContainer class="flex w-full h-(--default-header-height) justify-between items-center">
       <UiLogo />
 
-      <div class="flex">
+      <div class="flex gap-6 items-center">
         <div
           v-if="isLoggedIn && user"
           class="flex gap-4 items-center"
@@ -51,6 +51,8 @@ const { isAdmin } = storeToRefs(useSessionStore())
             Зарегистрироваться
           </UButton>
         </div>
+
+        <UColorModeSwitch />
       </div>
     </UContainer>
   </header>

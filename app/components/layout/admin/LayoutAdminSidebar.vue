@@ -12,7 +12,7 @@ const [isCollapsed, toggleCollapsed] = useToggle(true)
 
 <template>
   <aside
-    class="flex flex-col gap-12 h-full bg-zinc-950 border-r border-zinc-800 py-6 px-4 max-w-[var(--admin-sidebar-width)] overflow-hidden transition-[max-width]"
+    class="flex flex-col gap-12 h-full bg-muted dark:bg-zinc-950 border-r border-default dark:border-zinc-800 py-6 px-4 max-w-[var(--admin-sidebar-width)] overflow-hidden transition-[max-width]"
     :class="{
       '!max-w-[450px]': !isCollapsed
     }"
@@ -49,6 +49,10 @@ const [isCollapsed, toggleCollapsed] = useToggle(true)
         </li>
       </ul>
     </nav>
+
+    <UColorModeSwitch
+      v-if="!isCollapsed"
+    />
 
     <NuxtLink
       class="flex cursor-pointer hover:text-primary mt-auto gap-2 items-center transition-opacity duration-1000 whitespace-nowrap"

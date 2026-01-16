@@ -24,6 +24,12 @@
   --ui-container-max-width: 1200px;
 }
 
+.light {
+  --ui-text-dimmed: var(--color-gray-400);
+  --ui-bg-inverted: var(--color-gray-100);
+  --ui-bg-muted: var(--color-gray-200);
+}
+
 .dark {
   --ui-bg: #0f0f10;
   --ui-bg-muted: #17171a;

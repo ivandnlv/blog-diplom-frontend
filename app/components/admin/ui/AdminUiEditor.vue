@@ -117,6 +117,9 @@ watch(editor, debouncedRegister, { deep: true })
     v-model="model"
     content-type="html"
     class="w-full min-h-21"
+    :ui="{
+      content: '[&_*]:text-default'
+    }"
   >
     <UEditorToolbar
       :editor="editor"

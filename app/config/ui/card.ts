@@ -10,7 +10,7 @@ export const card: NuxtUiConfigType['card'] = {
   variants: {
     variant: {
       solid: {
-        root: 'ring ring-zinc-800'
+        root: 'ring ring-default'
       }
     }
   },

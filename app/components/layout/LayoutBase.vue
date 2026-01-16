@@ -10,7 +10,7 @@
 
     <footer class="flex flex-col justify-center h-(--default-footer-height)">
       <UContainer class="flex w-full justify-between">
-        <ULink to="/ui/ui">Ui kit</ULink>
+        <ULink to="/ui">Ui kit</ULink>
 
         <span>Blog-diplom</span>
       </UContainer>

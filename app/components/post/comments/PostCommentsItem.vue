@@ -48,14 +48,16 @@ const onAnswer = useAuthRequiredCallbackWrapper(() => answerModal.open(), {
         :alt="name"
       />
 
-      <span>{{ name }}</span>
+      <span class="text-default">{{ name }}</span>
 
-      <span class="text-zinc-500 ml-auto">
+      <span class="text-muted ml-auto">
         {{ createdFormatted }}
       </span>
     </div>
 
-    <p>{{ comment.content }}</p>
+    <p class="text-default">
+      {{ comment.content }}
+    </p>
 
     <UButton
       v-if="comment.author?.id !== user?.id"

@@ -6,15 +6,23 @@ defineProps<{
 
 <template>
   <div
-    class="ui-html-content"
+    class="ui-html-content text-default"
     v-html="content"
   />
 </template>
 
+<style lang="css">
+@import 'tailwindcss';
+@import '@nuxt/ui';
+
+.ui-html-content code {
+  @apply bg-muted;
+}
+</style>
+
 <style lang="scss">
 .ui-html-content {
   /* базовые */
-  color: inherit;
   font-size: 1rem;
   line-height: 1.75;
   word-break: break-word;
@@ -82,7 +90,6 @@ defineProps<{
     font-size: 0.925em;
     padding: 0.15em 0.4em;
     border-radius: 0.5rem;
-    background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.10);
     white-space: pre-wrap;
   }

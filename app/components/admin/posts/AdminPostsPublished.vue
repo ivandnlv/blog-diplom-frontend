@@ -41,11 +41,11 @@ const { runWithLoading: togglePublishedWithLoading, isLoading } = useTryCatchWit
       }"
     >
       <UIcon
-        class="size-6"
+        class="size-6 text-inverted"
         :name="isPublished ? ICONS_HERO.EYE_16_SOLID : ICONS_HERO.EYE_SLASH_16_SOLID"
       />
 
-      <span>{{ isPublished ? 'Опубликовано' : 'Публикация скрыта' }}</span>
+      <span class="text-inverted">{{ isPublished ? 'Опубликовано' : 'Публикация скрыта' }}</span>
     </div>
 
     <UButton

@@ -22,16 +22,16 @@ const postLink = computed(() => ({
 <template>
   <UCard>
     <div class="flex flex-col gap-3">
-      <span class="text-zinc-500">{{ dateStr }}</span>
+      <span class="text-dimmed">{{ dateStr }}</span>
 
       <NuxtImg
-        class="rounded-lg overflow-hidden w-full max-h-[250px] object-cover"
+        class="rounded-lg overflow-hidden w-full max-h-[350px] object-cover"
         :src="post?.thumbnailUrl"
         loading="lazy"
       />
 
       <NuxtLink
-        class="text-xl font-bold transition-colors hover:text-primary"
+        class="text-xl text-default font-bold transition-colors hover:text-primary"
         :to="postLink"
       >
         {{ post.title }}
