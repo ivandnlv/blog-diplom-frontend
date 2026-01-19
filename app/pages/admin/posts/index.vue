@@ -12,7 +12,7 @@ const emptyDescription = `Создайте первую публикацию <br
 </script>
 
 <template>
-  <div class="flex flex-col gap-8 h-full max-w-300 pb-30 mx-auto w-full">
+  <AdminUiPageContainer>
     <div class="flex items-center justify-between gap-6">
       <h1 class="title-main">
         {{ SITEMAP.adminPosts.name }}
@@ -46,5 +46,5 @@ const emptyDescription = `Создайте первую публикацию <br
       v-model:page="currentPage"
       :total="total"
     />
-  </div>
+  </AdminUiPageContainer>
 </template>

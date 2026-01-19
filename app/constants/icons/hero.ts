@@ -17,5 +17,7 @@ export const ICONS_HERO = {
   CODE_BRACKET_SOLID: 'i-heroicons-code-bracket-solid' as const,
   PHOTO_20_SOLID: 'i-heroicons-photo-20-solid' as const,
   ARROW_LEFT_ON_RECTANGLE_20_SOLID: 'i-heroicons-arrow-left-on-rectangle-20-solid' as const,
-  ARROW_RIGHT_END_ON_RECTANGLE_20_SOLID: 'i-heroicons-arrow-right-end-on-rectangle-20-solid' as const
+  ARROW_RIGHT_END_ON_RECTANGLE_20_SOLID: 'i-heroicons-arrow-right-end-on-rectangle-20-solid' as const,
+  CHAT_BUBBLE_LEFT_RIGHT_20_SOLID: 'i-heroicons-chat-bubble-left-right-20-solid' as const,
+  EXCLAMATION_TRIANGLE_20_SOLID: 'i-heroicons-exclamation-triangle-20-solid' as const
 }

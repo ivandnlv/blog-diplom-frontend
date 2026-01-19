@@ -14,7 +14,7 @@ withDefaults(defineProps<{
       body: 'flex flex-col gap-2'
     }"
   >
-    <span class="title-secondary">{{ title }}</span>
+    <span class="title-secondary text-default">{{ title }}</span>
 
     <p
       v-if="description"

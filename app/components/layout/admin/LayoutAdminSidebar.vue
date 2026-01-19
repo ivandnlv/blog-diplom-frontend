@@ -4,10 +4,17 @@ import { SITEMAP } from '~/constants/app/sitemap'
 import { ICONS_HERO } from '~/constants/icons/hero'
 
 const routes: SitemapRoute[] = [
-  SITEMAP.adminPosts
+  SITEMAP.adminPosts,
+  SITEMAP.adminComments
 ]
 
 const [isCollapsed, toggleCollapsed] = useToggle(true)
+
+const route = useRoute()
+
+function getIsItemActive(item: SitemapRoute) {
+  return route.name?.toString().includes((item.route as any).name)
+}
 </script>
 
 <template>
@@ -24,14 +31,17 @@ const [isCollapsed, toggleCollapsed] = useToggle(true)
     />
 
     <nav>
-      <ul>
+      <ul
+        class="flex flex-col gap-4"
+      >
         <li
           v-for="(item, i) in routes"
           :key="`route-${i}`"
         >
           <NuxtLink
             :to="item.route"
-            class="flex gap-2 items-center [.router-link-active]:text-primary transition-colors hover:text-primary-500"
+            class="flex gap-2 items-center transition-colors hover:text-primary-500"
+            :class="getIsItemActive(item) ? 'text-primary' : ''"
           >
             <UIcon
               v-if="item?.icon"
@@ -40,7 +50,7 @@ const [isCollapsed, toggleCollapsed] = useToggle(true)
             />
 
             <span
-              class="font-bold transition-opacity"
+              class="font-bold transition-opacity whitespace-nowrap"
               :class="isCollapsed ? 'opacity-0' : 'opacity-100'"
             >
               {{ item.name }}

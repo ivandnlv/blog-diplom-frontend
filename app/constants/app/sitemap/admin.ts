@@ -24,8 +24,17 @@ const adminPostsCreate: SitemapRoute = {
   }
 }
 
+const adminComments: SitemapRoute = {
+  name: 'Комментарии',
+  route: {
+    name: APP_ROUTES.adminComments
+  },
+  icon: ICONS_HERO.CHAT_BUBBLE_LEFT_RIGHT_20_SOLID
+}
+
 export const adminSitemap = {
   adminPosts,
   adminPostsId,
-  adminPostsCreate
+  adminPostsCreate,
+  adminComments
 }

@@ -9,6 +9,7 @@ export type AppRouteName
     | 'admin-posts-id'
     | 'admin-posts-create'
     | 'posts-slug'
+    | 'admin-comments'
 
 export interface SitemapRoute {
   name: string

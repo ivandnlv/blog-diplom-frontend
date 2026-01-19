@@ -1,15 +1,19 @@
 <script setup lang="ts">
 import UiModalText from '~/components/ui/modal/UiModalText.vue'
 
-withDefaults(defineProps<{
+const props = withDefaults(defineProps<{
   title?: string
   description?: string
   confirmBtnLabel?: string
   cancelBtnLabel?: string
+  confirmBtnLoading?: boolean
+  closeAfterConfirm?: boolean
 }>(), {
   title: 'Подтвердите действие',
   confirmBtnLabel: 'Принять',
-  cancelBtnLabel: 'Отмена'
+  cancelBtnLabel: 'Отмена',
+  confirmBtnLoading: false,
+  closeAfterConfirm: true
 })
 
 const emit = defineEmits<{
@@ -24,7 +28,9 @@ const onCancel = () => {
 
 const onConfirm = () => {
   emit('confirm')
-  emit('close', true)
+  if (props.closeAfterConfirm) {
+    emit('close', true)
+  }
 }
 </script>
 
@@ -40,6 +46,8 @@ const onConfirm = () => {
         :description="description"
       />
 
+      <slot />
+
       <div class="flex w-full gap-4">
         <UButton
           block
@@ -50,6 +58,7 @@ const onConfirm = () => {
 
         <UButton
           block
+          :loading="confirmBtnLoading"
           :label="confirmBtnLabel"
           @click="onConfirm()"
         />

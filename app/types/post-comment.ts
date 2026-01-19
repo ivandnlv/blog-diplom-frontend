@@ -11,4 +11,5 @@ export interface PostCommentEntity extends BaseEntity {
   authorId?: number
   author?: UserEntity
   childrenCount?: number
+  moderationReason?: string
 }

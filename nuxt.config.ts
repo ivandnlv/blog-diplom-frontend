@@ -29,6 +29,9 @@ export default defineNuxtConfig({
     '/': { prerender: true },
     '/ui': {
       ssr: false
+    },
+    '/admin/**': {
+      ssr: false
     }
   },
 
