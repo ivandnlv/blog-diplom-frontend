@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import type { PostCommentEntity } from '~/types/post-comment'
+
 const props = withDefaults(defineProps<{
+  comment: PostCommentEntity
   title?: string
   description?: string
-  postId: number
-  parentId?: number
   successFunction?: () => void
 }>(), {
   title: 'Ответить на комментарий',
@@ -23,14 +24,25 @@ const onSuccess = () => {
 
 <template>
   <UModal
-    :title="title"
-    :description="description"
+    :ui="{
+      body: 'flex flex-col gap-6'
+    }"
   >
     <template #body>
+      <UiModalText
+        :title="title"
+        :description="description"
+      />
+
+      <PostCommentsItem
+        :comment="comment"
+        :can-action="false"
+      />
+
       <PostCommentsForm
-        :post-id="postId"
+        :post-id="comment.postId"
         :button-block="true"
-        :parent-id="parentId"
+        :parent-id="comment.id"
         @success="onSuccess"
       />
     </template>

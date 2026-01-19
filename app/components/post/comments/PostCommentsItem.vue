@@ -4,18 +4,25 @@ import { formatISOToDateWithConditions } from '~/helpers/format/date'
 import { LazyPostCommentsFormModal } from '#components'
 import { useAuthRequiredCallbackWrapper } from '~/composables/use-auth-required-callback-wrapper'
 import { useAuthStore } from '~/stores/auth'
+import { COMMENTS_MAX_LEVEL } from '~/constants/comments/comments-max-level'
 
 const props = withDefaults(defineProps<{
   comment: PostCommentEntity
   level?: number
+  canAction?: boolean
 }>(), {
-  level: 0
+  level: 0,
+  canAction: true
 })
 
 const authStore = useAuthStore()
 const { user } = storeToRefs(authStore)
 
 const [isShowAnswers, toggleShowAnswers] = useToggle()
+
+const isByCurrentUser = computed(() => props.comment.author?.id === user.value?.id)
+
+const isCanAnswer = computed(() => !isByCurrentUser.value && props.level < COMMENTS_MAX_LEVEL)
 
 const emit = defineEmits<{
   (e: 'answered'): void
@@ -37,8 +44,7 @@ const overlay = useOverlay()
 
 const answerModal = overlay.create(LazyPostCommentsFormModal, {
   props: {
-    postId: props.comment.postId,
-    parentId: props.comment.id,
+    comment: props.comment,
     successFunction: onModalAnswered
   }
 })
@@ -47,7 +53,13 @@ const name = computed(() => {
   return props.comment.author?.email ?? ''
 })
 
-const onAnswer = useAuthRequiredCallbackWrapper(() => answerModal.open(), {
+const onOpenAnswerModal = () => {
+  answerModal.open()
+
+  if (!isShowAnswers.value) toggleShowAnswers(true)
+}
+
+const onAnswer = useAuthRequiredCallbackWrapper(onOpenAnswerModal, {
   description: 'Чтобы оставить комментарий, вам необходимо авторизоваться'
 })
 </script>
@@ -56,6 +68,7 @@ const onAnswer = useAuthRequiredCallbackWrapper(() => answerModal.open(), {
   <UCard
     :style="level && comment?.parentId ? `marginLeft: ${level * 24}px` : ''"
     :ui="{
+      root: isByCurrentUser ? 'light:bg-primary-100 dark:bg-primary-950' : '',
       body: 'flex flex-col gap-2'
     }"
   >
@@ -64,7 +77,13 @@ const onAnswer = useAuthRequiredCallbackWrapper(() => answerModal.open(), {
         :alt="name"
       />
 
-      <span class="text-default">{{ name }}</span>
+      <span class="text-default">
+        {{ name }}
+        <span
+          v-if="isByCurrentUser"
+          class="!text-primary"
+        >(Вы)</span>
+      </span>
 
       <span class="text-muted ml-auto">
         {{ createdFormatted }}
@@ -75,7 +94,10 @@ const onAnswer = useAuthRequiredCallbackWrapper(() => answerModal.open(), {
       {{ comment.content }}
     </p>
 
-    <div class="flex w-full items-end justify-between gap-4">
+    <div
+      v-if="canAction"
+      class="flex w-full items-end justify-between gap-4"
+    >
       <button
         v-if="comment?.childrenCount"
         class="cursor-pointer transition-colors text-sm font-medium text-default hover:text-primary"
@@ -85,7 +107,7 @@ const onAnswer = useAuthRequiredCallbackWrapper(() => answerModal.open(), {
       </button>
 
       <UButton
-        v-if="comment.author?.id !== user?.id"
+        v-if="isCanAnswer"
         class="w-fit ml-auto"
         color="secondary"
         @click="onAnswer()"
@@ -96,7 +118,7 @@ const onAnswer = useAuthRequiredCallbackWrapper(() => answerModal.open(), {
   </UCard>
 
   <PostComments
-    v-if="isShowAnswers"
+    v-if="isShowAnswers && canAction"
     ref="postComments"
     :post-id="comment.postId"
     :parent-id="comment.id"
