@@ -5,6 +5,7 @@ import type { TableColumn } from '#ui/components/Table.vue'
 import { formatBoolean } from '~/helpers/format/boolean'
 import { ICONS_HERO } from '~/constants/icons/hero'
 import { LazyAdminCommentsDeleteModal, LazyAdminCommentsModerateModal } from '#components'
+import { SITEMAP } from '~/constants/app/sitemap'
 
 definePageMeta({
   layout: 'admin'
@@ -99,6 +100,19 @@ const onCommentDelete = (comment: PostCommentEntity) => {
     >
       <template #author-cell="{ row }">
         <span>{{ row.original?.author?.email ? row.original.author.email : '-' }}</span>
+      </template>
+
+      <template #postId-cell="{ row }">
+        <ULink
+          :to="{
+            ...SITEMAP.adminPostsId.route,
+            params: {
+              id: row.original.postId
+            }
+          }"
+        >
+          {{ row.original.postId }}
+        </ULink>
       </template>
 
       <template #moderationReason-cell="{ row }">
