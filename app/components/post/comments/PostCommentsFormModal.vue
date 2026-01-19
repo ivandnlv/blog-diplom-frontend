@@ -1,5 +1,5 @@
 <script setup lang="ts">
-withDefaults(defineProps<{
+const props = withDefaults(defineProps<{
   title?: string
   description?: string
   postId: number
@@ -10,6 +10,15 @@ withDefaults(defineProps<{
   description: 'Ответьте на комментарий пользователя',
   successFunction: () => {}
 })
+
+const emit = defineEmits<{
+  (e: 'close', value: boolean): void
+}>()
+
+const onSuccess = () => {
+  props.successFunction()
+  emit('close', true)
+}
 </script>
 
 <template>
@@ -22,7 +31,7 @@ withDefaults(defineProps<{
         :post-id="postId"
         :button-block="true"
         :parent-id="parentId"
-        @success="successFunction"
+        @success="onSuccess"
       />
     </template>
   </UModal>

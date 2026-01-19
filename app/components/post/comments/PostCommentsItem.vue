@@ -5,25 +5,41 @@ import { LazyPostCommentsFormModal } from '#components'
 import { useAuthRequiredCallbackWrapper } from '~/composables/use-auth-required-callback-wrapper'
 import { useAuthStore } from '~/stores/auth'
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   comment: PostCommentEntity
-}>()
+  level?: number
+}>(), {
+  level: 0
+})
 
 const authStore = useAuthStore()
 const { user } = storeToRefs(authStore)
+
+const [isShowAnswers, toggleShowAnswers] = useToggle()
 
 const emit = defineEmits<{
   (e: 'answered'): void
 }>()
 
+const commentsRef = useTemplateRef('postComments')
+
+const onModalAnswered = () => {
+  emit('answered')
+
+  if (!isShowAnswers.value || !commentsRef.value) return
+
+  commentsRef.value.refresh()
+}
+
 const createdFormatted = computed(() => formatISOToDateWithConditions(props.comment.createdAt))
 
 const overlay = useOverlay()
+
 const answerModal = overlay.create(LazyPostCommentsFormModal, {
   props: {
     postId: props.comment.postId,
     parentId: props.comment.id,
-    successFunction: () => emit('answered')
+    successFunction: onModalAnswered
   }
 })
 
@@ -38,7 +54,7 @@ const onAnswer = useAuthRequiredCallbackWrapper(() => answerModal.open(), {
 
 <template>
   <UCard
-    :class="props.comment.parentId ? 'ml-6' : ''"
+    :style="level && comment?.parentId ? `marginLeft: ${level * 24}px` : ''"
     :ui="{
       body: 'flex flex-col gap-2'
     }"
@@ -59,13 +75,33 @@ const onAnswer = useAuthRequiredCallbackWrapper(() => answerModal.open(), {
       {{ comment.content }}
     </p>
 
-    <UButton
-      v-if="comment.author?.id !== user?.id"
-      class="w-fit self-end"
-      color="secondary"
-      @click="onAnswer()"
-    >
-      Ответить
-    </UButton>
+    <div class="flex w-full items-end justify-between gap-4">
+      <button
+        v-if="comment?.childrenCount"
+        class="cursor-pointer transition-colors text-sm font-medium text-default hover:text-primary"
+        @click="toggleShowAnswers()"
+      >
+        {{ isShowAnswers ? 'Скрыть ответы' : 'Показать ответы' }}
+      </button>
+
+      <UButton
+        v-if="comment.author?.id !== user?.id"
+        class="w-fit ml-auto"
+        color="secondary"
+        @click="onAnswer()"
+      >
+        Ответить
+      </UButton>
+    </div>
   </UCard>
+
+  <PostComments
+    v-if="isShowAnswers"
+    ref="postComments"
+    :post-id="comment.postId"
+    :parent-id="comment.id"
+    :show-title="false"
+    :show-form="false"
+    :level="level + 1"
+  />
 </template>

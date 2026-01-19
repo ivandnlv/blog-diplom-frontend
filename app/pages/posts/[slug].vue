@@ -49,7 +49,7 @@ const { data, pending } = useAsyncData(`data:post-${slug}`, getPost, { default: 
 
       <ClientOnly>
         <PostComments
-          :post="data"
+          :post-id="data.id"
         />
 
         <template #fallback>

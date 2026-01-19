@@ -1,26 +1,38 @@
 <script setup lang="ts">
-import type { PostEntity } from '~/types/post'
 import { postsCommentsApi } from '~/api/posts-comments'
 import type { PostCommentEntity } from '~/types/post-comment'
 import UiEmpty from '~/components/ui/UiEmpty.vue'
 
-const props = defineProps<{
-  post: PostEntity
-}>()
+const props = withDefaults(defineProps<{
+  showTitle?: boolean
+  showForm?: boolean
+  parentId?: number
+  postId: number
+  level?: number
+}>(), {
+  showTitle: true,
+  showForm: true,
+  level: 0
+})
+
+const uniqueId = [props.postId, props.parentId].filter(Boolean).join('-')
 
 const { getPaginationQuery, setTotal, setFirstPage } = usePagination({
-  uniqueId: `pagination:post-${props.post.id}-comments`
+  uniqueId: `pagination:post-${uniqueId}-comments`
 })
 
 async function fetchCommentsByPost() {
-  const { data } = await postsCommentsApi.get(props.post.id, getPaginationQuery())
+  const { data } = await postsCommentsApi.get(props.postId, {
+    ...getPaginationQuery(),
+    parentId: props.parentId
+  })
 
   setTotal(data.total)
 
   return data.items
 }
 
-const { data, pending, refresh } = useLazyAsyncData(`data:post-${props.post.id}-comments`, fetchCommentsByPost, {
+const { data, pending, refresh } = useLazyAsyncData(`data:post-${uniqueId}-comments`, fetchCommentsByPost, {
   default: () => [] as PostCommentEntity[],
   server: false
 })
@@ -29,13 +41,20 @@ const resetAndRefresh = () => {
   setFirstPage()
   refresh()
 }
+
+defineExpose({
+  refresh
+})
 </script>
 
 <template>
   <div
     class="flex flex-col gap-6"
   >
-    <span class="title-secondary">Комментарии к публикации</span>
+    <span
+      v-if="showTitle"
+      class="title-secondary"
+    >Комментарии к публикации</span>
 
     <UiLoader v-if="pending" />
 
@@ -47,6 +66,7 @@ const resetAndRefresh = () => {
         v-for="comment in data"
         :key="comment.id"
         :comment="comment"
+        :level="level"
         @answered="resetAndRefresh()"
       />
     </div>
@@ -57,13 +77,15 @@ const resetAndRefresh = () => {
       description="Вы можете оставить комментарий к публикации"
     />
 
-    <span class="title-secondary">Хотите оставить комментарий?</span>
+    <template v-if="showForm">
+      <span class="title-secondary">Хотите оставить комментарий?</span>
 
-    <UCard>
-      <PostCommentsForm
-        :post-id="post.id"
-        @success="resetAndRefresh()"
-      />
-    </UCard>
+      <UCard>
+        <PostCommentsForm
+          :post-id="postId"
+          @success="resetAndRefresh()"
+        />
+      </UCard>
+    </template>
   </div>
 </template>
