@@ -13,6 +13,9 @@ export const button: NuxtUiConfigType['button'] = {
       md: {
         base: 'px-5 py-2.5 rounded-xl font-bold transition-colors shadow-lg text-sm'
       }
+    },
+    variant: {
+      link: 'light:shadow-none'
     }
   },
   compoundVariants: [

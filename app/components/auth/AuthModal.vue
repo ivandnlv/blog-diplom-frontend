@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { ComponentInstance } from 'vue'
 import { LazyAuthLoginForm, LazyAuthRegisterForm } from '#components'
+import UiModalText from '~/components/ui/modal/UiModalText.vue'
 
 export interface AuthModalProps {
   title?: string
@@ -30,10 +31,16 @@ const componentsByMode: Record<AuthType, ComponentInstance<any>> = {
 
 <template>
   <UModal
-    :title="title"
-    :description="description"
+    :ui="{
+      body: 'flex flex-col gap-6'
+    }"
   >
     <template #body="{ close }">
+      <UiModalText
+        :title="title"
+        :description="description"
+      />
+
       <component
         :is="componentsByMode[currentMode]"
         switch-mode="emit"

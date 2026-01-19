@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import UiModalText from '~/components/ui/modal/UiModalText.vue'
+
 withDefaults(defineProps<{
   title?: string
   description?: string
@@ -28,13 +30,16 @@ const onConfirm = () => {
 
 <template>
   <UModal
-    :title="title"
-    :description="description"
     :ui="{
       body: 'flex flex-col gap-8'
     }"
   >
     <template #body>
+      <UiModalText
+        :title="title"
+        :description="description"
+      />
+
       <div class="flex w-full gap-4">
         <UButton
           block

@@ -12,11 +12,10 @@ defineProps<{
 </template>
 
 <style lang="css">
-@import 'tailwindcss';
-@import '@nuxt/ui';
+@import '~/assets/css/main.css';
 
 .ui-html-content code {
-  @apply bg-muted;
+  background: var(--ui-bg-muted);
 }
 </style>
 
