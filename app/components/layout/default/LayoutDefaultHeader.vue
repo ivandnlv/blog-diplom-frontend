@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { SITEMAP } from '~/constants/app/sitemap'
-import { useSessionStore } from '~/stores/session'
 
 const { isLoggedIn, user } = storeToRefs(useAuthStore())
-
-const { isAdmin } = storeToRefs(useSessionStore())
 </script>
 
 <template>
@@ -13,26 +10,10 @@ const { isAdmin } = storeToRefs(useSessionStore())
       <UiLogo />
 
       <div class="flex gap-6 items-center">
-        <div
+        <LayoutDefaultUser
           v-if="isLoggedIn && user"
-          class="flex gap-4 items-center"
-        >
-          <span class="max-sm:hidden">Вы вошли как: <b>{{ user.email }}</b></span>
-
-          <UButton
-            :to="SITEMAP.authLogout.route"
-            color="secondary"
-          >
-            Выйти
-          </UButton>
-
-          <UButton
-            v-if="isAdmin"
-            :to="SITEMAP.adminPosts.route"
-          >
-            Перейти в админку
-          </UButton>
-        </div>
+          :user="user"
+        />
 
         <div
           v-else
@@ -52,7 +33,7 @@ const { isAdmin } = storeToRefs(useSessionStore())
           </UButton>
         </div>
 
-        <UColorModeSwitch />
+        <UColorModeSwitch v-if="!isLoggedIn" />
       </div>
     </UContainer>
   </header>

@@ -15,5 +15,7 @@ export const ICONS_HERO = {
   UNDERLINE_SOLID: 'i-heroicons-underline-solid' as const,
   STRIKETHROUGH_SOLID: 'i-heroicons-strikethrough-solid' as const,
   CODE_BRACKET_SOLID: 'i-heroicons-code-bracket-solid' as const,
-  PHOTO_20_SOLID: 'i-heroicons-photo-20-solid' as const
+  PHOTO_20_SOLID: 'i-heroicons-photo-20-solid' as const,
+  ARROW_LEFT_ON_RECTANGLE_20_SOLID: 'i-heroicons-arrow-left-on-rectangle-20-solid' as const,
+  ARROW_RIGHT_END_ON_RECTANGLE_20_SOLID: 'i-heroicons-arrow-right-end-on-rectangle-20-solid' as const
 }
