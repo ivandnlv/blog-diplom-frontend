@@ -43,6 +43,9 @@ const onModalOpen = (postId: number) => {
   <UTable
     :data="posts"
     :columns="POSTS_ADMIN_TABLE_COLUMNS"
+    :ui="{
+      td: 'first:max-w-[250px] first:truncate nth-[2]:max-w-[150px] nth-[2]:truncate'
+    }"
   >
     <template #title-cell="{ row }">
       <NuxtLink

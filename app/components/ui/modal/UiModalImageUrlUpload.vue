@@ -31,10 +31,13 @@ const onUpdateUpload = (value: string | undefined) => {
 <template>
   <UModal
     v-model="model"
-    :title="title"
-    :description="description"
   >
     <template #body>
+      <UiModalText
+        :title="title"
+        :description="description"
+      />
+
       <UiImageUrlUploadForm
         :model-value="uploadModel"
         @update:model-value="onUpdateUpload"
