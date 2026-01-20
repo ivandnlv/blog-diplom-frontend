@@ -7,7 +7,11 @@ const { isLoggedIn, user } = storeToRefs(useAuthStore())
 <template>
   <header class="w-full z-50 border-b border-default bg-(--ui-bg)/80 backdrop-blur-md">
     <UContainer class="flex w-full h-(--default-header-height) justify-between items-center">
-      <UiLogo />
+      <div class="flex gap-4 items-center">
+        <UiLogo />
+
+        <span class="max-lg:hidden text-dimmed text-xs">Блог о разработке</span>
+      </div>
 
       <div class="flex gap-6 items-center">
         <LayoutDefaultUser

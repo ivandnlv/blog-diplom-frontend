@@ -12,7 +12,7 @@
       <UContainer class="flex w-full justify-between">
         <ULink to="/ui">Ui kit</ULink>
 
-        <span>Blog-diplom</span>
+        <UiLogo />
       </UContainer>
     </footer>
   </div>
