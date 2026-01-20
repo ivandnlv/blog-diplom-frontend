@@ -1,5 +1,5 @@
 import { usePagination } from '~/composables/use-pagination'
-import { adminPostsApi } from '~/api/admin-posts'
+import { adminPostsApi } from '~/api/admin/admin-posts'
 import type { PostEntity } from '~/types/post'
 
 export const useAdminPostsApi = (uniqueId: string) => {

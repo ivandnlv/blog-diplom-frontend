@@ -3,7 +3,7 @@ import type { AdminPostsBody } from '~/types/admin/posts'
 import { object } from 'yup'
 import { appValidator } from '~/helpers/validation'
 import type { PostEntity } from '~/types/post'
-import { adminPostsApi } from '~/api/admin-posts'
+import { adminPostsApi } from '~/api/admin/admin-posts'
 
 const props = defineProps<{
   post?: PostEntity

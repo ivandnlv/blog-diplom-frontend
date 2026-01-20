@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { adminCommentsApi } from '~/api/admin-comments'
+import { adminCommentsApi } from '~/api/admin/admin-comments'
 import type { PostCommentEntity } from '~/types/post-comment'
 import type { TableColumn } from '#ui/components/Table.vue'
 import { formatBoolean } from '~/helpers/format/boolean'

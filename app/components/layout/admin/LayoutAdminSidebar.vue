@@ -28,6 +28,7 @@ function getIsItemActive(item: SitemapRoute) {
   >
     <UiLogo
       :collapsed="isCollapsed"
+      :to="SITEMAP.adminUsers.route"
     />
 
     <nav>

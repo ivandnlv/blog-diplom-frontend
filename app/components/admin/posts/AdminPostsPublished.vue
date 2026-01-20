@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { PostEntity } from '~/types/post'
 import { ICONS_HERO } from '~/constants/icons/hero'
-import { adminPostsApi } from '~/api/admin-posts'
+import { adminPostsApi } from '~/api/admin/admin-posts'
 import { useSuccessNotification } from '~/composables/use-notification'
 
 const props = defineProps<{

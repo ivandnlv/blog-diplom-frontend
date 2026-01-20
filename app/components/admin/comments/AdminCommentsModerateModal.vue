@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { PostCommentEntity } from '~/types/post-comment'
-import { adminCommentsApi } from '~/api/admin-comments'
+import { adminCommentsApi } from '~/api/admin/admin-comments'
 import { VALIDATION_ERRORS } from '~/constants/app/validation-errors'
 
 const props = withDefaults(defineProps<{

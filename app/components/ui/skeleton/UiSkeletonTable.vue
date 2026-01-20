@@ -7,7 +7,7 @@ withDefaults(defineProps<{
 </script>
 
 <template>
-  <div class="flex flex-col gap-3 w-full">
+  <div class="flex flex-col w-full">
     <u-skeleton
       v-for="i in limit"
       :key="`ui-table-skeleton-${i}`"

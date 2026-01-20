@@ -6,7 +6,7 @@ import { formatBoolean } from '~/helpers/format/boolean'
 import { formatISOtoDDMMYYYY } from '~/helpers/format/date'
 import { LazyUiModalConfirm } from '#components'
 import { SITEMAP } from '~/constants/app/sitemap'
-import { adminPostsApi } from '~/api/admin-posts'
+import { adminPostsApi } from '~/api/admin/admin-posts'
 import { useTryCatch } from '~/composables/use-try-catch'
 
 defineProps<{

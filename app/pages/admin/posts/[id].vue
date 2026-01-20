@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { adminPostsApi } from '~/api/admin-posts'
+import { adminPostsApi } from '~/api/admin/admin-posts'
 import { SITEMAP } from '~/constants/app/sitemap'
 import { useAdminLayoutBack } from '~/composables/admin/use-admin-layout-back'
 
