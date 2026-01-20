@@ -1,9 +1,9 @@
 /* Основной заголовок страницы */
 @utility title-main {
-  @apply text-3xl font-semibold;
+  @apply text-3xl max-lg:text-2xl font-semibold;
 }
 
 /* Более меньший заголовок (можно использовать в модалках или в заголовках для блоков) */
 @utility title-secondary {
-  @apply text-2xl font-semibold;
+  @apply text-2xl max-lg:text-xl font-semibold;
 }

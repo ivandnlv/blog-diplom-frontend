@@ -1,13 +1,7 @@
 <script setup lang="ts">
 import type { SitemapRoute } from '~/types/app/router'
-import { SITEMAP } from '~/constants/app/sitemap'
 import { APP_ADMIN_INDEX_ROUTE } from '~/constants/app'
-
-const routes: SitemapRoute[] = [
-  SITEMAP.adminUsers,
-  SITEMAP.adminPosts,
-  SITEMAP.adminComments
-]
+import { LAYOUT_ADMIN_ROUTES } from '~/constants/layout/admin/layout-admin-routes'
 
 const [isCollapsed, toggleCollapsed] = useToggle(true)
 
@@ -37,7 +31,7 @@ function getIsItemActive(item: SitemapRoute) {
         class="flex flex-col gap-8"
       >
         <li
-          v-for="(item, i) in routes"
+          v-for="(item, i) in LAYOUT_ADMIN_ROUTES"
           :key="`route-${i}`"
         >
           <NuxtLink

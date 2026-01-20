@@ -7,24 +7,18 @@ const { backRoute } = storeToRefs(store)
 </script>
 
 <template>
-  <div class="flex relative flex-col min-h-svh">
-    <header class="w-full h-(--admin-header-height) flex justify-end px-6 py-2">
-      <LayoutUser
-        :user-ui="{
-          root: '!p-0'
-        }"
-      />
-    </header>
+  <div class="relative min-h-svh">
+    <LayoutAdminHeader />
 
     <div class="flex w-full h-full">
       <LayoutAdminSidebar
-        class="fixed left-0 top-0 z-lower-max"
+        class="max-lg:hidden fixed left-0 top-0 z-lower-max"
       />
 
-      <main class="max-2xl:flex w-full relative ml-(--admin-sidebar-width) pt-(--admin-header-height) py-12 max-2xl:px-8">
+      <main class="max-2xl:flex w-full h-full relative lg:ml-(--admin-sidebar-width) pt-(--admin-header-height) max-lg:pb-(--admin-mobile-footer-height) py-12 lg:max-2xl:px-8">
         <UButton
           v-if="backRoute"
-          class="2xl:absolute left-6 top-6 h-fit"
+          class="max-lg:hidden 2xl:absolute left-6 top-6 h-fit"
           color="secondary"
           :icon="ICONS_HERO.ARROW_LEFT_16_SOLID"
           :to="backRoute"
@@ -37,5 +31,9 @@ const { backRoute } = storeToRefs(store)
         </UContainer>
       </main>
     </div>
+
+    <LayoutAdminMobileBar
+      class="lg:hidden fixed bottom-0 left-0"
+    />
   </div>
 </template>
