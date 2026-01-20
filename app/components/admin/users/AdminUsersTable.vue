@@ -11,7 +11,7 @@ defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'deleted'): void
+  (e: 'delete', userId: number): void
 }>()
 
 const columns: TableColumn<UserEntity>[] = [
@@ -32,27 +32,6 @@ const columns: TableColumn<UserEntity>[] = [
     header: ''
   }
 ]
-
-async function deleteUser(id: number) {
-  await adminUsersApi.delete(id)
-
-  useSuccessNotification('Пользователь удален!')
-
-  emit('deleted')
-}
-
-const deleteUserWrapped = useTryCatch(deleteUser)
-
-const overlay = useOverlay()
-
-const onUserDelete = (id: number) => {
-  overlay.create(LazyUiModalConfirm, {
-    props: {
-      description: 'Вы действительно хотите удалить пользователя?',
-      onConfirm: () => deleteUserWrapped(id)
-    }
-  }).open()
-}
 </script>
 
 <template>
@@ -84,7 +63,7 @@ const onUserDelete = (id: number) => {
         <UButton
           color="error"
           :icon="ICONS_HERO.TRASH_16_SOLID"
-          @click="() => onUserDelete(row.original.id)"
+          @click="emit('delete', row.original.id)"
         />
       </div>
     </template>

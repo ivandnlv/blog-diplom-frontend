@@ -2,6 +2,7 @@
 import { SITEMAP } from '~/constants/app/sitemap'
 import { adminUsersApi } from '~/api/admin/admin-users'
 import type { UserEntity } from '~/types/user'
+import { LazyUiModalConfirm } from '#components'
 
 definePageMeta({
   layout: 'admin'
@@ -27,6 +28,27 @@ const { data, pending, refresh } = useAsyncData('data:admin-users', fetchUsers, 
 watch(currentPage, () => refresh())
 
 const emptyDescription = `Создайте первого пользователя <br/> С помощью кнопки «Создать»`
+
+async function deleteUser(id: number) {
+  await adminUsersApi.delete(id)
+
+  useSuccessNotification('Пользователь удален!')
+
+  await refresh()
+}
+
+const deleteUserWrapped = useTryCatch(deleteUser)
+
+const overlay = useOverlay()
+
+const onUserDelete = (id: number) => {
+  overlay.create(LazyUiModalConfirm, {
+    props: {
+      description: 'Вы действительно хотите удалить пользователя?',
+      onConfirm: () => deleteUserWrapped(id)
+    }
+  }).open()
+}
 </script>
 
 <template>
@@ -45,11 +67,19 @@ const emptyDescription = `Создайте первого пользовател
 
     <UiLoader v-if="pending" />
 
-    <AdminUsersTable
-      v-else-if="data?.length"
-      :users="data"
-      @deleted="refresh"
-    />
+    <template v-else-if="data?.length">
+      <AdminUsersTable
+        class="max-lg:hidden"
+        :users="data"
+        @delete="onUserDelete"
+      />
+
+      <AdminUsersCards
+        class="lg:hidden"
+        :users="data"
+        @delete="onUserDelete"
+      />
+    </template>
 
     <UiEmpty
       v-else
