@@ -1,12 +1,10 @@
 import type { UserRole } from '~/types/user'
-import { SITEMAP } from '~/constants/app/sitemap'
+import { APP_ADMIN_INDEX_ROUTE, APP_INDEX_ROUTE } from '~/constants/app'
 
 export async function redirectAfterAuthByRole(role: UserRole) {
   if (role === 'ADMIN') {
-    await navigateTo(SITEMAP.adminPosts.route)
-
-    return
+    return navigateTo(APP_ADMIN_INDEX_ROUTE.route)
   }
 
-  await navigateTo(SITEMAP.index.route)
+  return navigateTo(APP_INDEX_ROUTE.route)
 }

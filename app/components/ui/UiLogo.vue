@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { RouteLocationRaw } from 'vue-router'
-import { SITEMAP } from '~/constants/app/sitemap'
+import { APP_INDEX_ROUTE } from '~/constants/app'
 
 withDefaults(defineProps<{
   to?: RouteLocationRaw
   collapsed?: boolean
 }>(), {
-  to: () => SITEMAP.index.route
+  to: () => APP_INDEX_ROUTE.route
 })
 </script>
 

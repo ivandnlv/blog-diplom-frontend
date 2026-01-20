@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { SitemapRoute } from '~/types/app/router'
 import { SITEMAP } from '~/constants/app/sitemap'
+import { APP_ADMIN_INDEX_ROUTE } from '~/constants/app'
 
 const routes: SitemapRoute[] = [
   SITEMAP.adminUsers,
@@ -28,7 +29,7 @@ function getIsItemActive(item: SitemapRoute) {
   >
     <UiLogo
       :collapsed="isCollapsed"
-      :to="SITEMAP.adminUsers.route"
+      :to="APP_ADMIN_INDEX_ROUTE.route"
     />
 
     <nav>
