@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { SitemapRoute } from '~/types/app/router'
 import { SITEMAP } from '~/constants/app/sitemap'
-import { ICONS_HERO } from '~/constants/icons/hero'
 
 const routes: SitemapRoute[] = [
+  SITEMAP.adminUsers,
   SITEMAP.adminPosts,
   SITEMAP.adminComments
 ]
@@ -59,24 +59,5 @@ function getIsItemActive(item: SitemapRoute) {
         </li>
       </ul>
     </nav>
-
-    <UColorModeSwitch
-      v-if="!isCollapsed"
-    />
-
-    <NuxtLink
-      class="flex cursor-pointer hover:text-primary mt-auto gap-2 items-center transition-opacity duration-1000 whitespace-nowrap"
-      :to="SITEMAP.index.route"
-    >
-      <UIcon
-        :name="ICONS_HERO.ARROW_LEFT_16_SOLID"
-        class="min-w-5 size-5 color-inherit transition-colors"
-      />
-
-      <span
-        class="transition-colors"
-        :class="isCollapsed ? 'opacity-0' : 'opacity-100'"
-      >Вернуться на платформу</span>
-    </NuxtLink>
   </aside>
 </template>

@@ -18,6 +18,7 @@
   --default-footer-height: 56px;
   --default-main-min-height: calc(100svh - var(--default-header-height) - var(--default-footer-height) - 1px);
 
+  --admin-header-height: 52px;
   --admin-sidebar-width: 65px;
 
   --ui-radius: 1rem; /* 16px (rounded-2xl) */

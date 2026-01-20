@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { SITEMAP } from '~/constants/app/sitemap'
 
-const { isLoggedIn, user } = storeToRefs(useAuthStore())
+const { isLoggedIn } = storeToRefs(useAuthStore())
 </script>
 
 <template>
@@ -14,10 +14,7 @@ const { isLoggedIn, user } = storeToRefs(useAuthStore())
       </div>
 
       <div class="flex gap-6 items-center">
-        <LayoutDefaultUser
-          v-if="isLoggedIn && user"
-          :user="user"
-        />
+        <LayoutUser v-if="isLoggedIn" />
 
         <div
           v-else

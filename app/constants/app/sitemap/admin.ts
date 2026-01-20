@@ -32,9 +32,18 @@ const adminComments: SitemapRoute = {
   icon: ICONS_HERO.CHAT_BUBBLE_LEFT_RIGHT_20_SOLID
 }
 
+const adminUsers: SitemapRoute = {
+  name: 'Пользователи',
+  route: {
+    name: APP_ROUTES.adminUsers
+  },
+  icon: ICONS_HERO.USER_GROUP_20_SOLID
+}
+
 export const adminSitemap = {
   adminPosts,
   adminPostsId,
   adminPostsCreate,
-  adminComments
+  adminComments,
+  adminUsers
 }

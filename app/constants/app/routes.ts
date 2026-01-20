@@ -9,5 +9,6 @@ export const APP_ROUTES: Record<string, AppRouteName> = {
   adminPostsId: 'admin-posts-id' as const,
   adminPostsCreate: 'admin-posts-create' as const,
   postsSlug: 'posts-slug' as const,
-  adminComments: 'admin-comments' as const
+  adminComments: 'admin-comments' as const,
+  adminUsers: 'admin-users' as const
 }

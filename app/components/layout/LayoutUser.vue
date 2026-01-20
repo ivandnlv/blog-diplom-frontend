@@ -1,17 +1,23 @@
 <script setup lang="ts">
-import type { UserEntity } from '~/types/user'
 import type { DropdownMenuItem } from '#ui/components/DropdownMenu.vue'
 import { ICONS_HERO } from '~/constants/icons/hero'
 import { SITEMAP } from '~/constants/app/sitemap'
+import type { UserProps } from '#ui/components/User.vue'
 
-defineProps<{
-  user: UserEntity
+const props = defineProps<{
+  userUi?: UserProps['ui']
+  collapsed?: boolean
 }>()
 
+const route = useRoute()
+
+const isAdminRoute = computed(() => route.name?.toString().includes('admin'))
+
+const { user } = storeToRefs(useAuthStore())
 const { isAdmin } = storeToRefs(useSessionStore())
 
 const items = computed<DropdownMenuItem[][]>(() => {
-  const sameItems = [
+  const baseItems = [
     {
       slot: 'colorMode'
     },
@@ -22,7 +28,9 @@ const items = computed<DropdownMenuItem[][]>(() => {
     }
   ]
 
-  return isAdmin.value
+  if (!isAdmin.value) return [baseItems]
+
+  return isAdmin.value && !isAdminRoute.value
     ? [
         [
           {
@@ -31,18 +39,37 @@ const items = computed<DropdownMenuItem[][]>(() => {
             to: SITEMAP.adminPosts.route
           }
         ],
-        sameItems
+        baseItems
       ]
     : [
-        sameItems
+        [
+          {
+            label: 'Платформа',
+            icon: ICONS_HERO.ARROW_LEFT_16_SOLID,
+            to: SITEMAP.index.route
+          }
+        ],
+        baseItems
       ]
 })
 
 const colorMode = useColorMode()
+
+const mergedUserUi = computed(() => {
+  if (!props.userUi) return {
+    avatar: 'text-inverted group-hover/user:scale-100'
+  }
+
+  return {
+    ...props.userUi,
+    avatar: 'avatar' in props.userUi ? [props.userUi.avatar, 'text-inverted group-hover/user:scale-100'].join(' ') : 'text-inverted group-hover/user:scale-100'
+  }
+})
 </script>
 
 <template>
   <UDropdownMenu
+    v-if="user"
     mode="hover"
     :items="items"
     :ui="{
@@ -56,9 +83,7 @@ const colorMode = useColorMode()
       :avatar="{
         alt: user.username
       }"
-      :ui="{
-        avatar: 'text-inverted group-hover/user:scale-100'
-      }"
+      :ui="mergedUserUi"
     />
 
     <template #colorMode>
