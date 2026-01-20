@@ -41,7 +41,7 @@ const onModalOpen = () => {
       @click="model = undefined"
     >
       <UIcon
-        class="size-6"
+        class="size-6 light:text-inverted"
         :name="ICONS_HERO.TRASH_16_SOLID"
       />
     </button>

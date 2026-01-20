@@ -1,9 +1,17 @@
 <script setup lang="ts">
 import type { UserEntity } from '~/types/user'
 import type { TableColumn } from '#ui/components/Table.vue'
+import { ICONS_HERO } from '~/constants/icons/hero'
+import { SITEMAP } from '~/constants/app/sitemap'
+import { adminUsersApi } from '~/api/admin/admin-users'
+import { LazyUiModalConfirm } from '#components'
 
 defineProps<{
   users: UserEntity[]
+}>()
+
+const emit = defineEmits<{
+  (e: 'deleted'): void
 }>()
 
 const columns: TableColumn<UserEntity>[] = [
@@ -18,8 +26,33 @@ const columns: TableColumn<UserEntity>[] = [
   {
     accessorKey: 'username',
     header: 'Имя / псевдоним'
+  },
+  {
+    accessorKey: 'actions',
+    header: ''
   }
 ]
+
+async function deleteUser(id: number) {
+  await adminUsersApi.delete(id)
+
+  useSuccessNotification('Пользователь удален!')
+
+  emit('deleted')
+}
+
+const deleteUserWrapped = useTryCatch(deleteUser)
+
+const overlay = useOverlay()
+
+const onUserDelete = (id: number) => {
+  overlay.create(LazyUiModalConfirm, {
+    props: {
+      description: 'Вы действительно хотите удалить пользователя?',
+      onConfirm: () => deleteUserWrapped(id)
+    }
+  }).open()
+}
 </script>
 
 <template>
@@ -28,8 +61,32 @@ const columns: TableColumn<UserEntity>[] = [
     :columns="columns"
   >
     <template #avatarUrl-cell="{ row }">
-      <NuxtImg v-if="row.original?.avatarUrl" />
+      <UAvatar
+        v-if="row.original?.avatarUrl"
+        class="size-12"
+        :src="row.original.avatarUrl"
+      />
       <span v-else>-</span>
+    </template>
+
+    <template #actions-cell="{ row }">
+      <div class="flex justify-end gap-4 items-center">
+        <UButton
+          :icon="ICONS_HERO.PENCIL_SQUARE_16_SOLID"
+          :to="{
+            ...SITEMAP.adminUsersId.route,
+            params: {
+              id: row.original.id
+            }
+          }"
+        />
+
+        <UButton
+          color="error"
+          :icon="ICONS_HERO.TRASH_16_SOLID"
+          @click="() => onUserDelete(row.original.id)"
+        />
+      </div>
     </template>
   </UTable>
 </template>

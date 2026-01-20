@@ -2,10 +2,10 @@ import { usePagination } from '~/composables/use-pagination'
 import { adminPostsApi } from '~/api/admin/admin-posts'
 import type { PostEntity } from '~/types/post'
 
-export const useAdminPostsApi = (uniqueId: string) => {
+export const useAdminPostsApi = (uniqueId: string, limit: number = 10) => {
   const { getPaginationQuery, currentPage, setTotal, pagesCount, total, setFirstPage } = usePagination({
-    limit: 20,
-    uniqueId: 'admin-posts-main-store'
+    limit,
+    uniqueId: `pagination:${uniqueId}`
   })
 
   async function fetchPosts() {
@@ -16,7 +16,7 @@ export const useAdminPostsApi = (uniqueId: string) => {
     return data.items
   }
 
-  const { data, pending, refresh } = useAsyncData('data:admin-post', fetchPosts, { default: () => [] as PostEntity[] })
+  const { data, pending, refresh } = useAsyncData(`data:${uniqueId}`, fetchPosts, { default: () => [] as PostEntity[] })
 
   watch(currentPage, () => refresh())
 

@@ -19,7 +19,7 @@ function getIsItemActive(item: SitemapRoute) {
 
 <template>
   <aside
-    class="flex flex-col gap-12 h-full bg-muted dark:bg-zinc-950 border-r border-default dark:border-zinc-800 py-6 px-4 max-w-[var(--admin-sidebar-width)] overflow-hidden transition-[max-width]"
+    class="flex flex-col gap-24 h-full bg-muted dark:bg-zinc-950 border-r border-default dark:border-zinc-800 py-6 px-4 max-w-[var(--admin-sidebar-width)] overflow-hidden transition-[max-width]"
     :class="{
       '!max-w-[450px]': !isCollapsed
     }"
@@ -33,7 +33,7 @@ function getIsItemActive(item: SitemapRoute) {
 
     <nav>
       <ul
-        class="flex flex-col gap-4"
+        class="flex flex-col gap-8"
       >
         <li
           v-for="(item, i) in routes"

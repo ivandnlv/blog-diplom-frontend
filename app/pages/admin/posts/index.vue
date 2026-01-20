@@ -6,7 +6,9 @@ definePageMeta({
   layout: 'admin'
 })
 
-const { data, pending, pagesCount, currentPage, total, resetAndRefresh } = useAdminPostsApi('admin-posts')
+const LIMIT = 20
+
+const { data, pending, pagesCount, currentPage, total, resetAndRefresh } = useAdminPostsApi('admin-posts', LIMIT)
 
 const emptyDescription = `Создайте первую публикацию <br/> С помощью кнопки «Создать»`
 </script>
@@ -45,6 +47,7 @@ const emptyDescription = `Создайте первую публикацию <br
       v-if="pagesCount > 1"
       v-model:page="currentPage"
       :total="total"
+      :items-per-page="LIMIT"
     />
   </AdminUiPageContainer>
 </template>

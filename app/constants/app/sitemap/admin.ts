@@ -40,10 +40,26 @@ const adminUsers: SitemapRoute = {
   icon: ICONS_HERO.USER_GROUP_20_SOLID
 }
 
+const adminUsersCreate: SitemapRoute = {
+  name: 'Создание пользователя',
+  route: {
+    name: APP_ROUTES.adminUsersCreate
+  }
+}
+
+const adminUsersId: SitemapRoute = {
+  name: 'Пользователь',
+  route: {
+    name: APP_ROUTES.adminUsersId
+  }
+}
+
 export const adminSitemap = {
   adminPosts,
   adminPostsId,
   adminPostsCreate,
   adminComments,
-  adminUsers
+  adminUsers,
+  adminUsersCreate,
+  adminUsersId
 }
