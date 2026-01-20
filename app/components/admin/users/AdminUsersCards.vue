@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { UserEntity } from '~/types/user'
 import type { EntityCardField } from '~/types/admin/ui/entity-card'
-import { ICONS_HERO } from '~/constants/icons/hero'
 import { SITEMAP } from '~/constants/app/sitemap'
 
 defineProps<{
@@ -32,6 +31,9 @@ const fields: EntityCardField<UserEntity>[] = [
   <AdminUiEntityCardList
     :data="users"
     :fields="fields"
+    :ui="{
+      cardTd: 'max-[420px]:first:w-[100px] min-[420px]:max-sm:first:w-[200px]'
+    }"
   >
     <template #avatarUrl-row="{ item }">
       <UAvatar
@@ -44,7 +46,7 @@ const fields: EntityCardField<UserEntity>[] = [
     </template>
 
     <template #item-bottom="{ item }">
-      <div class="flex flex-col gap-4 mt-6">
+      <div class="flex flex-col gap-4 mt-auto">
         <UButton
           :to="{
             ...SITEMAP.adminUsersId.route,
