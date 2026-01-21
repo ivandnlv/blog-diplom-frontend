@@ -32,6 +32,9 @@ export default defineNuxtConfig({
     },
     '/admin/**': {
       ssr: false
+    },
+    '/my-profile': {
+      ssr: false
     }
   },
 

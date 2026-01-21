@@ -37,11 +37,19 @@ const postsSlug: SitemapRoute = {
   }
 }
 
+const myProfile: SitemapRoute = {
+  name: 'Профиль',
+  route: {
+    name: APP_ROUTES.myProfile
+  }
+}
+
 export const SITEMAP = {
   ...adminSitemap,
   index,
   auth,
   authRegister,
   authLogout,
-  postsSlug
+  postsSlug,
+  myProfile
 }

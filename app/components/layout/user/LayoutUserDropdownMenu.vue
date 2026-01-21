@@ -14,6 +14,11 @@ const items = computed<DropdownMenuItem[][]>(() => {
       slot: 'colorMode'
     },
     {
+      label: 'Профиль',
+      icon: ICONS_HERO.USER_20_SOLID,
+      to: SITEMAP.myProfile.route
+    },
+    {
       label: 'Выйти',
       icon: ICONS_HERO.ARROW_LEFT_ON_RECTANGLE_20_SOLID,
       to: SITEMAP.authLogout.route

@@ -20,5 +20,6 @@ export const ICONS_HERO = {
   ARROW_RIGHT_END_ON_RECTANGLE_20_SOLID: 'i-heroicons-arrow-right-end-on-rectangle-20-solid' as const,
   CHAT_BUBBLE_LEFT_RIGHT_20_SOLID: 'i-heroicons-chat-bubble-left-right-20-solid' as const,
   EXCLAMATION_TRIANGLE_20_SOLID: 'i-heroicons-exclamation-triangle-20-solid' as const,
-  USER_GROUP_20_SOLID: 'i-heroicons-user-group-20-solid' as const
+  USER_GROUP_20_SOLID: 'i-heroicons-user-group-20-solid' as const,
+  USER_20_SOLID: 'i-heroicons-user-20-solid' as const
 }

@@ -12,5 +12,6 @@ export const APP_ROUTES: Record<string, AppRouteName> = {
   adminComments: 'admin-comments' as const,
   adminUsers: 'admin-users' as const,
   adminUsersCreate: 'admin-users-create' as const,
-  adminUsersId: 'admin-users-id' as const
+  adminUsersId: 'admin-users-id' as const,
+  myProfile: 'my-profile' as const
 }

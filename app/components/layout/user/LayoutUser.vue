@@ -32,6 +32,7 @@ const isMobile = useIsMobile('(max-width: 500px)')
         :name="user.username"
         :description="user.email"
         :avatar="{
+          src: user.avatarUrl,
           alt: user.username
         }"
         :ui="mergedUserUi"
@@ -46,6 +47,7 @@ const isMobile = useIsMobile('(max-width: 500px)')
         :name="user.username"
         :description="user.email"
         :avatar="{
+          src: user.avatarUrl,
           alt: user.username
         }"
         :ui="mergedUserUi"

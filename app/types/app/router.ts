@@ -13,6 +13,7 @@ export type AppRouteName
     | 'admin-users'
     | 'admin-users-create'
     | 'admin-users-id'
+    | 'my-profile'
 
 export interface SitemapRoute {
   name: string

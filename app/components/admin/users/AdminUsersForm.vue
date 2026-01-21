@@ -97,11 +97,12 @@ const { runWithLoading: onSubmit, isLoading } = useTryCatchWithLoading(createOrE
 
     <UFormField
       name="password"
-      label="Пароль"
+      label="Пароль (если необходимо изменить)"
       :required="!user"
     >
       <UiInputPassword
         v-model="state.password"
+        placeholder="Введите новый пароль"
       />
     </UFormField>
 
