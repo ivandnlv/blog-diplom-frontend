@@ -31,11 +31,12 @@ const mergedUi = computed<EntityCardUi>(() => {
       :class="mergedUi.label"
     >{{ label }}</span>
 
-    <table class="table-fixed w-full">
-      <tbody>
+    <table class="max-[420px]:flex max-[420px]:flex-col table-fixed w-full">
+      <tbody class="max-[420px]:flex max-[420px]:flex-col">
         <tr
           v-for="(field, i) in fields"
           :key="i"
+          class="max-[420px]:flex max-[420px]:flex-col"
         >
           <td :class="mergedUi.td">
             <b class="font-semibold">{{ field.header }}:</b>

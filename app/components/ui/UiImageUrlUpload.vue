@@ -33,25 +33,34 @@ const onModalOpen = () => {
 
 <template>
   <div
-    :class="['flex flex-col w-fit relative rounded-2xl overflow-hidden', baseUi]"
+    :class="['flex flex-col w-fit relative lg:rounded-2xl overflow-hidden', baseUi]"
   >
-    <button
-      v-if="model"
-      class="cursor-pointer flex flex-col justify-center items-center absolute size-full top-0 left-0 opacity-0 hover:opacity-100 transition-opacity bg-gray-950/60"
-      @click="model = undefined"
-    >
-      <UIcon
-        class="size-6 light:text-inverted"
-        :name="ICONS_HERO.TRASH_16_SOLID"
-      />
-    </button>
+    <template v-if="model">
+      <button
+        class="max-lg:hidden cursor-pointer flex flex-col justify-center items-center absolute size-full top-0 left-0 opacity-0 hover:opacity-100 transition-opacity bg-gray-950/60"
+        @click="model = undefined"
+      >
+        <UIcon
+          class="size-6 light:text-inverted"
+          :name="ICONS_HERO.TRASH_16_SOLID"
+        />
+      </button>
 
-    <NuxtImg
-      v-if="model"
-      :class="imageUi"
-      :src="model"
-      loading="lazy"
-    />
+      <NuxtImg
+        :class="imageUi"
+        :src="model"
+        loading="lazy"
+      />
+
+      <UButton
+        class="lg:hidden w-fit self-center"
+        size="xs"
+        color="secondary"
+        @click="model = undefined"
+      >
+        Удалить
+      </UButton>
+    </template>
 
     <UButton
       v-else
