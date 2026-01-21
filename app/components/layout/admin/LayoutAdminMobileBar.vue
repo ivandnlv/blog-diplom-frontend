@@ -20,7 +20,7 @@ function getIsItemActive(item: SitemapRoute) {
       >
         <NuxtLink
           :to="item.route"
-          class="flex flex-col justify-center gap-2 items-center transition-colors"
+          class="flex flex-col justify-center gap-1 items-center transition-colors"
           :class="getIsItemActive(item) ? 'text-primary' : ''"
         >
           <UIcon

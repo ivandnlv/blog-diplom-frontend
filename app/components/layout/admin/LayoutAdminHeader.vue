@@ -8,7 +8,7 @@ const { backRoute } = storeToRefs(store)
 </script>
 
 <template>
-  <header class="w-full max-lg:border-b border-default h-(--admin-header-height) flex max-lg:items-center justify-between lg:justify-end px-6 py-2">
+  <header class="w-full max-lg:bg-(--ui-bg)/80 max-lg:backdrop-blur-md max-lg:border-b border-default h-(--admin-header-height) flex max-lg:items-center justify-between lg:justify-end px-6 py-2">
     <div class="flex gap-4">
       <UButton
         v-if="backRoute"
