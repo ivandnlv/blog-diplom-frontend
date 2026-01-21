@@ -16,25 +16,26 @@ const { isLoggedIn } = storeToRefs(useAuthStore())
       <div class="flex gap-6 items-center">
         <LayoutUser v-if="isLoggedIn" />
 
-        <div
-          v-else
-          class="flex gap-4 items-center"
-        >
-          <UButton
-            :to="SITEMAP.auth.route"
-          >
-            Войти
-          </UButton>
+        <template v-else>
+          <UColorModeButton />
 
-          <UButton
-            color="secondary"
-            :to="SITEMAP.authRegister.route"
+          <div
+            class="flex gap-4 items-center"
           >
-            Зарегистрироваться
-          </UButton>
-        </div>
+            <UButton
+              :to="SITEMAP.auth.route"
+            >
+              Войти
+            </UButton>
 
-        <UColorModeSwitch v-if="!isLoggedIn" />
+            <UButton
+              color="secondary"
+              :to="SITEMAP.authRegister.route"
+            >
+              Зарегистрироваться
+            </UButton>
+          </div>
+        </template>
       </div>
     </UContainer>
   </header>
