@@ -49,9 +49,14 @@ useInfiniteScrollFetch({
       />
     </div>
 
-    <ReuseSkeletonTemplate
-      v-if="morePending"
-      value="more"
-    />
+    <Transition
+      name="fade"
+      mode="out-in"
+    >
+      <ReuseSkeletonTemplate
+        v-if="morePending"
+        value="more"
+      />
+    </Transition>
   </div>
 </template>
