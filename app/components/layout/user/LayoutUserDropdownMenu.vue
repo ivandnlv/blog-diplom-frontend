@@ -2,18 +2,10 @@
 import type { DropdownMenuItem } from '#ui/components/DropdownMenu.vue'
 import { ICONS_HERO } from '~/constants/icons/hero'
 import { SITEMAP } from '~/constants/app/sitemap'
-import type { UserProps } from '#ui/components/User.vue'
-
-const props = defineProps<{
-  userUi?: UserProps['ui']
-  collapsed?: boolean
-}>()
 
 const route = useRoute()
-
 const isAdminRoute = computed(() => route.name?.toString().includes('admin'))
 
-const { user } = storeToRefs(useAuthStore())
 const { isAdmin } = storeToRefs(useSessionStore())
 
 const items = computed<DropdownMenuItem[][]>(() => {
@@ -54,37 +46,17 @@ const items = computed<DropdownMenuItem[][]>(() => {
 })
 
 const colorMode = useColorMode()
-
-const mergedUserUi = computed(() => {
-  if (!props.userUi) return {
-    avatar: 'text-inverted group-hover/user:scale-100'
-  }
-
-  return {
-    ...props.userUi,
-    avatar: 'avatar' in props.userUi ? [props.userUi.avatar, 'text-inverted group-hover/user:scale-100'].join(' ') : 'text-inverted group-hover/user:scale-100'
-  }
-})
 </script>
 
 <template>
   <UDropdownMenu
-    v-if="user"
     mode="hover"
     :items="items"
     :ui="{
       itemLabel: 'text-inherit'
     }"
   >
-    <UUser
-      class="cursor-pointer transition-colors hover:bg-inverted p-1.5 rounded-sm"
-      :name="user.username"
-      :description="user.email"
-      :avatar="{
-        alt: user.username
-      }"
-      :ui="mergedUserUi"
-    />
+    <slot />
 
     <template #colorMode>
       <UColorModeButton

@@ -6,7 +6,7 @@ const { isLoggedIn } = storeToRefs(useAuthStore())
 
 <template>
   <header class="w-full z-50 border-b border-default bg-(--ui-bg)/80 backdrop-blur-md">
-    <UContainer class="flex w-full h-(--default-header-height) justify-between items-center">
+    <UContainer class="flex  w-full h-(--default-header-height) justify-between items-center">
       <div class="flex gap-4 items-center">
         <UiLogo />
 
@@ -29,6 +29,7 @@ const { isLoggedIn } = storeToRefs(useAuthStore())
             </UButton>
 
             <UButton
+              class="max-lg:hidden"
               color="secondary"
               :to="SITEMAP.authRegister.route"
             >

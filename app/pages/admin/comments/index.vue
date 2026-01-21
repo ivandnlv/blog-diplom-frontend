@@ -53,6 +53,8 @@ const onCommentDelete = (comment: PostCommentEntity) => {
     }
   }).open()
 }
+
+const isMobile = useIsMobile()
 </script>
 
 <template>

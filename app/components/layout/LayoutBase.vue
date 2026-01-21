@@ -3,7 +3,7 @@
     <LayoutDefaultHeader class="fixed top-0 left-0" />
 
     <main class="min-h-(--default-main-min-height) mt-(--default-header-height)">
-      <UContainer class="w-full py-12 h-full">
+      <UContainer class="w-full py-6 lg:py-12 h-full">
         <slot />
       </UContainer>
     </main>
