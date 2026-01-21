@@ -53,7 +53,7 @@ const onModalOpen = () => {
       />
 
       <UButton
-        class="lg:hidden w-fit self-center"
+        class="lg:hidden w-fit self-center mt-2"
         size="xs"
         color="secondary"
         @click="model = undefined"
