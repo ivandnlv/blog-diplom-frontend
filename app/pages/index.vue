@@ -1,13 +1,25 @@
 <script setup lang="ts">
 const store = usePostsStore()
-const { data } = storeToRefs(store)
+const { data, pending } = storeToRefs(store)
+
+const containerClass = 'flex flex-col max-w-[626px] w-full mx-auto gap-6'
 </script>
 
 <template>
   <div class="flex flex-col gap-12">
     <div
-      v-if="data?.length"
-      class="flex flex-col max-w-[626px] w-full mx-auto gap-6"
+      v-if="pending"
+      :class="containerClass"
+    >
+      <PostCardSkeleton
+        v-for="i in 4"
+        :key="`skeleton-${i}`"
+      />
+    </div>
+
+    <div
+      v-else-if="data?.length"
+      :class="containerClass"
     >
       <PostCard
         v-for="post in data"
