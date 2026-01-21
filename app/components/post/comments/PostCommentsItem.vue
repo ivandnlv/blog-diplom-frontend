@@ -74,6 +74,8 @@ const onAnswer = useAuthRequiredCallbackWrapper(onOpenAnswerModal, {
   >
     <div class="flex items-center gap-2">
       <UAvatar
+        :src="comment?.author?.avatarUrl"
+        loading="lazy"
         :alt="name"
       />
 
