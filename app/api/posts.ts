@@ -1,16 +1,19 @@
-import type { BasePaginationResponse, BaseSuccessResponse } from '~/types/api'
+import type { BasePaginationQuery, BasePaginationResponse, BaseSuccessResponse } from '~/types/api'
 import type { PostEntity, PostMinEntity } from '~/types/post'
 import { apiFetch } from '~/plugins/fetch'
 
 export interface PostsApiType {
   GetList: {
+    Request: BasePaginationQuery
     Response: BasePaginationResponse<PostMinEntity>
   }
 }
 
 export const postsApi = {
-  async getList() {
-    return await apiFetch<PostsApiType['GetList']['Response']>('/posts')
+  async getList(query: PostsApiType['GetList']['Request'] = {}) {
+    return await apiFetch<PostsApiType['GetList']['Response']>('/posts', {
+      query
+    })
   },
 
   async getBySlug(slug: string) {

@@ -1,19 +1,39 @@
 import { postsApi } from '~/api/posts'
-import type { PostEntity, PostMinEntity } from '~/types/post'
+import type { PostMinEntity } from '~/types/post'
+import { promiseTimeout } from '@vueuse/core'
 
 export const usePostsStore = defineStore('store:posts', () => {
-  async function fetchPosts() {
-    const { data } = await postsApi.getList()
+  const { getPaginationQuery, setTotal, next, isLastPage } = usePagination({
+    limit: 3,
+    uniqueId: 'pagination:posts'
+  })
 
-    return data?.items ?? []
+  async function fetchPosts() {
+    const { data } = await postsApi.getList(getPaginationQuery())
+
+    setTotal(data.total)
+
+    return data.items
   }
 
   const { data, pending } = useAsyncData('data:posts', fetchPosts, {
     default: () => [] as PostMinEntity[]
   })
 
+  async function fetchMorePosts() {
+    await promiseTimeout(1000)
+    next()
+    const newPosts = await fetchPosts()
+    data.value = [...data.value, ...newPosts]
+  }
+
+  const { runWithLoading: fetchMoreWrapped, isLoading: morePending } = useTryCatchWithLoading(fetchMorePosts)
+
   return {
     data,
-    pending
+    pending,
+    fetchMore: fetchMoreWrapped,
+    morePending,
+    isLastPage
   }
 })
