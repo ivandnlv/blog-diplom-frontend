@@ -10,11 +10,11 @@ const props = defineProps<{
 
 const mergedUi = computed<EntityCardUi>(() => {
   if (!props.ui) return {
-    td: 'pr-4 py-2 truncate'
+    td: 'pr-4 py-2'
   }
 
   return {
-    td: ['pr-4 py-2 truncate', 'td' in props.ui ? props.ui.td : ''].join(' '),
+    td: ['pr-4 py-2', 'td' in props.ui ? props.ui.td : ''].join(' '),
     label: 'label' in props.ui ? props.ui.label : ''
   }
 })

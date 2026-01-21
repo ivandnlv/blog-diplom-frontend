@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { SITEMAP } from '~/constants/app/sitemap'
 import { useAdminPostsApi } from '~/composables/admin/use-admin-posts-api'
+import { adminPostsApi } from '~/api/admin/admin-posts'
+import { useTryCatch } from '~/composables/use-try-catch'
+import { LazyUiModalConfirm } from '#components'
 
 definePageMeta({
   layout: 'admin'
@@ -8,9 +11,30 @@ definePageMeta({
 
 const LIMIT = 20
 
-const { data, pending, pagesCount, currentPage, total, resetAndRefresh } = useAdminPostsApi('admin-posts', LIMIT)
+const { data, pending, pagesCount, currentPage, total, refresh } = useAdminPostsApi('admin-posts', LIMIT)
 
 const emptyDescription = `Создайте первую публикацию <br/> С помощью кнопки «Создать»`
+
+async function deletePost(id: number) {
+  await adminPostsApi.delete(id)
+
+  useSuccessNotification('Публикация удалена!')
+
+  await refresh()
+}
+
+const deletePostWithTryCatch = useTryCatch(deletePost)
+
+const overlay = useOverlay()
+
+const onDeletePost = (postId: number) => {
+  overlay.create(LazyUiModalConfirm, {
+    props: {
+      description: 'Вы действительно хотите удалить публикацию?',
+      onConfirm: () => deletePostWithTryCatch(postId)
+    }
+  }).open()
+}
 </script>
 
 <template>
@@ -31,11 +55,19 @@ const emptyDescription = `Создайте первую публикацию <br
       v-if="pending"
     />
 
-    <AdminPostsTable
-      v-else-if="data?.length"
-      :posts="data"
-      @deleted="resetAndRefresh"
-    />
+    <template v-else-if="data?.length">
+      <AdminPostsTable
+        class="max-lg:hidden"
+        :posts="data"
+        @delete="onDeletePost"
+      />
+
+      <AdminPostsCards
+        :posts="data"
+        class="lg:hidden"
+        @delete="onDeletePost"
+      />
+    </template>
 
     <UiEmpty
       v-else

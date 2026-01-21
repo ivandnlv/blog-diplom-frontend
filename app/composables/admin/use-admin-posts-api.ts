@@ -31,6 +31,7 @@ export const useAdminPostsApi = (uniqueId: string, limit: number = 10) => {
     currentPage,
     pagesCount,
     total,
-    resetAndRefresh
+    resetAndRefresh,
+    refresh
   }
 }

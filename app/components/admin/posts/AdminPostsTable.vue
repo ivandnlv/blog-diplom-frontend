@@ -14,29 +14,8 @@ defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'deleted'): void
+  (e: 'delete', postId: number): void
 }>()
-
-async function deletePost(id: number) {
-  await adminPostsApi.delete(id)
-
-  useSuccessNotification('Публикация удалена!')
-
-  emit('deleted')
-}
-
-const deletePostWithTryCatch = useTryCatch(deletePost)
-
-const overlay = useOverlay()
-
-const onModalOpen = (postId: number) => {
-  overlay.create(LazyUiModalConfirm, {
-    props: {
-      description: 'Вы действительно хотите удалить публикацию?',
-      onConfirm: () => deletePostWithTryCatch(postId)
-    }
-  }).open()
-}
 </script>
 
 <template>
@@ -86,7 +65,7 @@ const onModalOpen = (postId: number) => {
         <UButton
           color="error"
           :icon="ICONS_HERO.TRASH_16_SOLID"
-          @click="() => onModalOpen(row.original.id)"
+          @click="emit('delete', row.original.id)"
         />
       </div>
     </template>

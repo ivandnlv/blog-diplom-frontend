@@ -10,7 +10,7 @@ function getIsItemActive(item: SitemapRoute) {
 </script>
 
 <template>
-  <footer class="flex border-t border-default w-full py-2 px-6 h-(--admin-mobile-footer-height)">
+  <footer class="flex border-t bg-(--ui-bg)/80 backdrop-blur-md border-default w-full py-2 px-6 h-(--admin-mobile-footer-height)">
     <ul
       class="flex w-full gap-4 justify-around"
     >

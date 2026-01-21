@@ -31,9 +31,6 @@ const fields: EntityCardField<UserEntity>[] = [
   <AdminUiEntityCardList
     :data="users"
     :fields="fields"
-    :ui="{
-      cardTd: 'max-[420px]:first:w-[100px] min-[420px]:max-sm:first:w-[200px]'
-    }"
   >
     <template #avatarUrl-row="{ item }">
       <UAvatar

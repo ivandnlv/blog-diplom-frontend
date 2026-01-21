@@ -27,7 +27,10 @@ const fieldsBySlots = computed<EntityCardField<T>[]>(() => {
 const mergedUi = computed(() => {
   if (!props.ui) {
     return {
-      root: 'flex flex-col gap-6'
+      root: 'max-sm:flex max-sm:flex-col grid grid-cols-2 gap-6',
+      card: {
+        td: 'max-[420px]:first:w-[100px] min-[420px]:max-sm:first:w-[200px]'
+      }
     }
   }
 
@@ -35,10 +38,12 @@ const mergedUi = computed(() => {
     root: ['max-sm:flex max-sm:flex-col grid grid-cols-2 gap-6', 'root' in props.ui ? props.ui.root : ''].join(' '),
     card: props.ui?.cardTd || props.ui?.cardLabel
       ? {
-          td: props.ui.cardTd,
+          td: ['max-[420px]:first:w-[100px] min-[420px]:max-sm:first:w-[200px]', props.ui.cardTd].join(' '),
           label: props.ui.cardLabel
         }
-      : undefined
+      : {
+          td: 'max-[420px]:first:w-[100px] min-[420px]:max-sm:first:w-[200px]'
+        }
   }
 })
 </script>
