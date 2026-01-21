@@ -2,6 +2,7 @@
 import type { PostMinEntity } from '~/types/post'
 import { formatISOToDateWithConditions } from '~/helpers/format/date'
 import { SITEMAP } from '~/constants/app/sitemap'
+import { NuxtLink } from '#components'
 
 const props = defineProps<{
   post: PostMinEntity
@@ -17,10 +18,15 @@ const postLink = computed(() => ({
     slug: props.post.slug
   }
 }))
+
+const isMobile = useIsMobile()
 </script>
 
 <template>
-  <UCard>
+  <UCard
+    :as="isMobile ? NuxtLink : 'div'"
+    :to="postLink"
+  >
     <div class="flex flex-col gap-3">
       <span class="text-dimmed">{{ dateStr }}</span>
 
@@ -30,12 +36,13 @@ const postLink = computed(() => ({
         loading="lazy"
       />
 
-      <NuxtLink
+      <component
+        :is="isMobile ? 'span' : NuxtLink"
         class="text-xl text-default font-bold transition-colors hover:text-primary"
         :to="postLink"
       >
         {{ post.title }}
-      </NuxtLink>
+      </component>
     </div>
   </UCard>
 </template>
